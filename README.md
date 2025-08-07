@@ -1,2 +1,10 @@
-# Trabalho-de-Programacao-Campo-Minado
-Um repositório contendo a documentação completa do jogo de campo minado, feito pelos alunos do COLTEC-UFMG como um trabalho de fim de ano. Os envolvidos são
+# Campo Minado: Documentação 1
+
+**Jogo:** Campo minado
+**Orientador:** Henrico Barbosa
+**Alunos:** Eduardo Lamounier, Heitor Freitas e Miguel Peterson
+**Linguagem utilizada:** C++
+**Engine** (se alguma tiver sido utilizada): N/A
+
+### Ideia geral:
+    [...]
