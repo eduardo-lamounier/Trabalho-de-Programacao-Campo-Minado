@@ -6,4 +6,4 @@ Linguagem utilizada: C++
 Engine (se alguma tiver sido utilizada): N/A
 
 ### Ideia geral:
-    [...]
+[...]
