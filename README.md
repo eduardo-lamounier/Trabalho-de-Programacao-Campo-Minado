@@ -7,3 +7,5 @@ Um repositório contendo a documentação completa do jogo feito por alunos do C
 **Linguagem:** C++;  
 
 # Sobre o jogo
+
+# Algoritmo geral
