@@ -7,7 +7,7 @@ Esse repositório contém a documentação completa do jogo de campo minado dese
 **Linguagem:** C++;
 
 # Sobre o jogo
-O jogo gera um mapa de acordo com as especificações do usuário: altura (quant. de linhas), largura (quant. de colunas), quant. de bombas etc. Depois, o jogo continua da maneira usual: O jogador pode escolher uma posição para cavar, e mostrar quantas bombas são ao redor; ou escolher uma posição para colocar uma bandeira, se ele achar que há uma bomba naquela posição. O jogador ganha se liberar todos os espaços que não tem bombas (usar as bandeiras é critério do jogador). Para cavar e colocar a bandeira, usa-se, respectivamente, os comandos 'dig' e 'flag':  
+O jogo gera um mapa de acordo com as especificações do usuário: altura (quant. de linhas), largura (quant. de colunas), quant. de bombas etc. Depois, o jogo continua da maneira usual: O jogador pode escolher uma posição para cavar, e mostrar quantas bombas são ao redor; ou escolher uma posição para colocar uma bandeira, se ele achar que há uma bomba naquela posição. O jogador ganha se liberar todos os espaços que não tem bombas (usar as bandeiras é critério do jogador). Para cavar e colocar a bandeira, o usuário escreve, respectivamente, os comandos 'dig' e 'flag':  
 
 dig i, j -> cava do quadrado na linha i e coluna j  
 flag i, j -> coloca uma bandeira na linha i e coluna j  
