@@ -1,10 +1,9 @@
 # Visão Geral
 
-Esse repositório contém a documentação completa do jogo de campo minado desenvolvido por alunos do COLTEC-UFMG como um trabalho de fim de ano em 2025, iniciado em agosto e finalizado em novembro.
+Esse repositório contém a documentação completa do jogo de campo minado desenvolvido por alunos do COLTEC-UFMG como um trabalho de fim de ano em 2025, iniciado em agosto e finalizado em novembro.  
 
-**Envolvidos:** Eduardo Lamounier, Heitor Freitas, Miguel Peterson (alunos) e Henrico Barbosa (professor orientador);  
-**Turma:** 104B;  
-**Linguagem:** C++;
+**Envolvidos:** Eduardo, Heitor, Miguel (alunos) e Henrico Barbosa (professor orientador);  
+**Linguagem:** C++;  
 
 # Sobre o jogo
 O jogo gera um mapa de acordo com as especificações do usuário: altura (quant. de linhas), largura (quant. de colunas), quant. de bombas etc. Depois, o jogo continua da maneira usual: O jogador pode escolher uma posição para cavar, e mostrar quantas bombas são ao redor; ou escolher uma posição para colocar uma bandeira, se ele achar que há uma bomba naquela posição. O jogador ganha se liberar todos os espaços que não tem bombas (usar as bandeiras é critério do jogador). Para cavar e colocar a bandeira, o usuário escreve, respectivamente, os comandos 'dig' e 'flag':  
