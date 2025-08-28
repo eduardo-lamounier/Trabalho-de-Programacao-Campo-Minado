@@ -7,7 +7,7 @@ Arquivo que ao ser compilado, vai dar origem ao executável do jogo
 
 using namespace std;
 
-// =================================== main ===================================
+// ==================================< main >==================================
 
 int main(int argc, char *argv[]){
     // (Talvez pegar dados do usuário como nickname e afins para colocar em

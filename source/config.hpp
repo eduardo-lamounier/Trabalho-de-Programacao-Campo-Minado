@@ -16,10 +16,12 @@ jogo, além da função geral que cria o menu do jogo.
 #define MAX_BOMBS_PERCENTAGE_OF_AREA 80
 
 class GameConfig{
-    public:
+    private:
         int width, height;
         int totalBombs;
         int noBombsRegion;
+    public: 
+        int get(char *property);
 
         void inputSettings();
 };
