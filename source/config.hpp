@@ -15,15 +15,17 @@ jogo, além da função geral que cria o menu do jogo.
 
 #define MAX_BOMBS_PERCENTAGE_OF_AREA 80
 
+/// @brief Classe que armazena as principais propriedades do programa, além
+///        de armazenar métodos para configuração
 class GameConfig{
     private:
-        int width, height;
-        int totalBombs;
-        int noBombsRegion;
+        int Width, Height;
+        int TotalBombs;
+        int NoBombsRegion;
     public: 
-        int get(char *property);
+        int Get(char *property);
 
-        void inputSettings();
+        void InputSettings();
 };
 
 void menu();

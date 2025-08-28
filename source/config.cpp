@@ -16,26 +16,29 @@ estruturas antes prototipadas no header "config.hpp"
 ///                 corresponde ao nome da propriedade
 /// @return Retorna o valor inteiro da propriedade corespondente
 /// @note Lança uma exceção para uma string inválida
-int GameConfig::get(char *property){
-    if(strcmp(property, "width") == 0){
-        return width;
-    }else if(strcmp(property, "height") == 0){
-        return height;
-    }else if(strcmp(property, "totalBombs") == 0){
-        return totalBombs;
-    }else if(strcmp(property, "noBombsRegion") == 0){
-        return noBombsRegion;
+int GameConfig::Get(char *property){
+    if(strcmp(property, "Width") == 0){
+        return Width;
+    }else if(strcmp(property, "Height") == 0){
+        return Height;
+    }else if(strcmp(property, "TotalBombs") == 0){
+        return TotalBombs;
+    }else if(strcmp(property, "NoBombsRegion") == 0){
+        return NoBombsRegion;
     }else{
         throw ("Argumento inválido passado para a função: int GameConfig::get(char *property)\n Digite uma string correspondente a alguma propriedade válida da classe GameConfig\n");
     }
 }
 
-void GameConfig::inputSettings(){
+/// @brief Faz o input das configurações escolhidas pelo usuário, e armazena na
+///        classe GameConfig
+void GameConfig::InputSettings(){
     // (Lógica aqui)
 }
 
 // ================================< Menu >====================================
 
+/// @brief Carrega o menu, mostrando as primeiras opções para o usuário
 void menu(){
     // (Lógica aqui)
 }
