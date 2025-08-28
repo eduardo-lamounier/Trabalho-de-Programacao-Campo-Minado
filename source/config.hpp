@@ -10,22 +10,26 @@ jogo, além da função geral que cria o menu do jogo.
 
 #pragma once
 
+// Quantidade mínima e máxima de linhas e colunas:
 #define MIN_WIDTH_ND_HEIGHT 5
 #define MAX_WIDTH_ND_HEIGHT 40
 
+// Porcentagem máxima de bombas por unidade de área:
 #define MAX_BOMBS_PERCENTAGE_OF_AREA 80
 
-/// @brief Classe que armazena as principais propriedades do programa, além
+/// @brief Classe estática que armazena as principais propriedades do programa, além
 ///        de armazenar métodos para configuração
 class GameConfig{
     private:
-        int Width, Height;
-        int TotalBombs;
-        int NoBombsRegion;
+        static int Width, Height;
+        static int TotalBombs;
+        static int NoBombsRegion;
+    
+        /* Construtor privado (Classe estática) */ GameConfig(){};
     public: 
-        int Get(char *property);
+        static int Get(char *property);
 
-        void InputSettings();
+        static void InputSettings();
 };
 
 void menu();

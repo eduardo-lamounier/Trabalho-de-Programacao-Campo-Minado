@@ -13,7 +13,7 @@ estruturas antes prototipadas no header "config.hpp"
 
 /// @brief Acessa uma propriedade expecifica da classe GameConfig
 /// @param property Uma referência ao início de uma string, cujo texto 
-///                 corresponde ao nome da propriedade
+///                 corresponde ao nome da propriedade a ser acessada
 /// @return Retorna o valor inteiro da propriedade corespondente
 /// @note Lança uma exceção para uma string inválida
 int GameConfig::Get(char *property){
@@ -26,7 +26,7 @@ int GameConfig::Get(char *property){
     }else if(strcmp(property, "NoBombsRegion") == 0){
         return NoBombsRegion;
     }else{
-        throw ("Argumento inválido passado para a função: int GameConfig::get(char *property)\n Digite uma string correspondente a alguma propriedade válida da classe GameConfig\n");
+        throw("Argumento inválido passado para a função: int GameConfig::get(char *property). Digite uma string correspondente a alguma propriedade válida da classe GameConfig.\n");
     }
 }
 
