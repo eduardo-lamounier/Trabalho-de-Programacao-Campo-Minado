@@ -1,6 +1,6 @@
 /*
 
-Criado em: 27/08/2025 por Eduardo Lamounier Miranda
+Criado em: 27/08/2025 por Eduardo
 Finalizado em: --/--/2025
 
 Um header com as funções de inicialização dos dados, configuração das opções do
