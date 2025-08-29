@@ -7,7 +7,7 @@ estruturas antes prototipadas no header "config.hpp"
 
 #include<string>
 
-#include "config.hpp"
+#include "../include/config.hpp"
 
 // ======================< Métodos da classe GameConfig >======================
 

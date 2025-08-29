@@ -11,10 +11,10 @@ e classes adicionadas
 #include<iostream>
 
 // Inclusão do header config.cpp:
-#include "C:\Programacao\ProjetosGit\Trabalho-de-Programacao-Campo-Minado\source\config.hpp"
+#include "../include/config.hpp"
 
 int main(int argc, char *argv[]){
-    // (Teste)
+    
 
     return 0;
 }

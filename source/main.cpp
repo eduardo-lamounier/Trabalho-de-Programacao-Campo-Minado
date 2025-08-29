@@ -4,7 +4,7 @@ Arquivo que ao ser compilado, vai dar origem ao executável do jogo
 
 #include<iostream>
 
-#include "config.hpp"
+#include "..\include\config.hpp"
 
 using namespace std;
 
