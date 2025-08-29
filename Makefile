@@ -6,9 +6,11 @@ FLAGS = -Wall -Iinclude
 APLICACAO = app.exe
 TESTE_CONFIG = configTest.exe
 
-# Fontes papra cada executável:
-APP_SOURCES = source/main.cpp source/config.cpp
-TESTE_CONFIG_SOURCES = testing/configTest.cpp source/config.cpp
+# Fontes específicas:
+
+# Fontes para cada executável:
+APP_SOURCES = $(wildcard source/*.cpp) # Todos os arquivos .cpp em source
+TEST_CONFIG_SOURCES = testing/configTest.cpp source/config.cpp
 
 # Target padrão: Compila tudo:
 all: app config-test
@@ -18,18 +20,21 @@ app: $(APP_SOURCES)
 	@echo "Linkando e produzindo a aplicacao final"
 	$(CC) $(FLAGS) $(APP_SOURCES) -o $(APLICACAO)
 
-config-test: $(TESTE_CONFIG_SOURCES)
+config-test: $(TEST_CONFIG_SOURCES)
 	@echo "Linkando e produzindo a aplicacao teste para config.hpp"
-	$(CC) $(FLAG) $(TESTE_CONFIG_SOURCES) -o $(TESTE_CONFIG)
+	$(CC) $(FLAG) $(TEST_CONFIG_SOURCES) -o $(TESTE_CONFIG)
 
-# Roda (necessita compilação) algum dos executáveis:
+# Roda a aplicação final:
 run-app: app
+	@echo "Rodando a aplicacao final"
 	$(APLICACAO)
 
+# Roda os testes específicos:
 run-config-test: config-test
+	@echo "Executando a aplicacao teste para config.hpp"
 	$(TESTE_CONFIG)
 
 # Remove todos os elementos (com exceção dos arquivos source):
 clean:
 	@echo "Removendo tudo com excecao dos arquivos source"
-	rm -f $(APLICACAO) $(TESTE_CONFIG)
+	del /Q *.exe

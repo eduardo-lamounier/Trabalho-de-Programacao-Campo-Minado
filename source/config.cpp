@@ -5,9 +5,16 @@ estruturas antes prototipadas no header "config.hpp"
 
 */
 
-#include<string>
-
 #include "../include/config.hpp"
+
+using namespace std;
+
+// ====================< Propriedades da classe GameConfig >===================
+
+int GameConfig::Width = MIN_WIDTH_ND_HEIGHT;
+int GameConfig::Height = MIN_WIDTH_ND_HEIGHT;
+int GameConfig::TotalBombs = MIN_BOMBS_PER_AREA * (/*Area*/ MIN_WIDTH_ND_HEIGHT * MIN_WIDTH_ND_HEIGHT);
+int GameConfig::NoBombsRegion = MIN_NO_BOMBS_REGION;
 
 // ======================< Métodos da classe GameConfig >======================
 
@@ -16,17 +23,17 @@ estruturas antes prototipadas no header "config.hpp"
 ///                 corresponde ao nome da propriedade a ser acessada
 /// @return Retorna o valor inteiro da propriedade corespondente
 /// @note Lança uma exceção para uma string inválida
-int GameConfig::Get(char *property){
-    if(strcmp(property, "Width") == 0){
+int GameConfig::Get(string property){
+    if(property == "Width"){
         return Width;
-    }else if(strcmp(property, "Height") == 0){
+    }else if(property == "Height"){
         return Height;
-    }else if(strcmp(property, "TotalBombs") == 0){
+    }else if(property == "TotalBombs"){
         return TotalBombs;
-    }else if(strcmp(property, "NoBombsRegion") == 0){
+    }else if(property == "NoBombsRegion"){
         return NoBombsRegion;
     }else{
-        throw("Argumento inválido passado para a função: int GameConfig::get(char *property). Digite uma string correspondente a alguma propriedade válida da classe GameConfig.\n");
+        throw("Argumento inválido passado para a função: int GameConfig::get(std::string property). Digite uma string correspondente a alguma propriedade válida da classe GameConfig.\n");
     }
 }
 
