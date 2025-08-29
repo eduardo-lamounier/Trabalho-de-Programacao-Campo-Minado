@@ -3,16 +3,24 @@
 Criado em: 27/08/2025 por Eduardo
 Finalizado em: --/--/2025
 
+# Visão geral:
 Um header com as funções de inicialização dos dados, configuração das opções do
 jogo, além da função geral que cria o menu do jogo.
+
+# Uso:
+Para ver os detalhes do uso das funções e métodos, passe o mouse por cima e
+leia a documentação
 
 */
 
 #pragma once
 
 // ===================< Bibliotecas, headers e namespaces >====================
+
+// ------------------------------/ Bibliotecas /-------------------------------
 #include<string>
 
+// -------------------------------/ Namespaces /-------------------------------
 using namespace std;
 
 // ===========================< Constantes globais >===========================
@@ -35,7 +43,7 @@ using namespace std;
 ///        de armazenar métodos para configuração
 class GameConfig{
     private:
-        static int Width, Height;
+        static int Width, Height; // Quantidade de colunas e linhas, respectivamente
         static int TotalBombs;
         static int NoBombsRegion;
     

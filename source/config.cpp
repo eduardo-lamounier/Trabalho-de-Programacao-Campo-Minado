@@ -1,7 +1,12 @@
 /*
 
+# Visão geral:
 Arquivo .cpp complementar para implementar as funções, constantes, classes e 
 estruturas antes prototipadas no header "config.hpp"
+
+# Uso:
+Para ver os detalhes do uso das funções e métodos, passe o mouse por cima e
+leia a documentação
 
 */
 
@@ -13,7 +18,7 @@ estruturas antes prototipadas no header "config.hpp"
 
 int GameConfig::Width = MIN_WIDTH_ND_HEIGHT;
 int GameConfig::Height = MIN_WIDTH_ND_HEIGHT;
-int GameConfig::TotalBombs = MIN_BOMBS_PER_AREA * (/*Area*/ MIN_WIDTH_ND_HEIGHT * MIN_WIDTH_ND_HEIGHT);
+int GameConfig::TotalBombs = MIN_BOMBS_PER_AREA * (/* Area */ MIN_WIDTH_ND_HEIGHT * MIN_WIDTH_ND_HEIGHT);
 int GameConfig::NoBombsRegion = MIN_NO_BOMBS_REGION;
 
 // ===========================< Métodos de classes >===========================
