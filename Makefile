@@ -3,8 +3,8 @@ CC = g++
 FLAGS = -Wall -Iinclude
 
 # Nomes dos executáveis:
-APLICACAO = app.exe
-TESTE_CONFIG = configTest.exe
+APLICACAO = bin/app.exe
+TESTE_CONFIG = bin/configTest.exe
 
 # Fontes específicas:
 
@@ -38,6 +38,3 @@ run-config-test: config-test
 	@$(TESTE_CONFIG)
 	@echo ================================================================================
 
-# Remove todos os elementos (com exceção dos arquivos source):
-clean:
-	@del /Q *.exe
