@@ -18,6 +18,7 @@ leia a documentação
 // ===================< Bibliotecas, headers e namespaces >====================
 
 // ------------------------------/ Bibliotecas /-------------------------------
+#include<iostream>
 #include<string>
 
 // ===========================< Constantes globais >===========================
