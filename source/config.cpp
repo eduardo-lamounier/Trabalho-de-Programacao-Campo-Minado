@@ -40,7 +40,7 @@ int GameConfig::Get(const std::string& property){
     }else if(property == "NoBombsRegion"){
         return NoBombsRegion;
     }else{
-        throw("Argumento inválido passado para a função: int GameConfig::get(std::string property). Digite uma string correspondente a alguma propriedade válida da classe GameConfig.\n");
+        throw("Argumento inválido passado para a função: int GameConfig::Get(std::string& property). Digite uma string correspondente a alguma propriedade válida da classe GameConfig.\n");
     }
 }
 
