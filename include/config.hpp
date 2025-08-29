@@ -10,7 +10,12 @@ jogo, além da função geral que cria o menu do jogo.
 
 #pragma once
 
+// ===================< Bibliotecas, headers e namespaces >====================
 #include<string>
+
+using namespace std;
+
+// ===========================< Constantes globais >===========================
 
 // Quantidade mínima e máxima de linhas e colunas:
 #define MIN_WIDTH_ND_HEIGHT 5
@@ -23,6 +28,8 @@ jogo, além da função geral que cria o menu do jogo.
 // Porcentagem mínima e máxima de espaço reservado sem bombas:
 #define MIN_NO_BOMBS_REGION 3
 #define MAX_NO_BOMBS_REGION_PER_TOTAL_AREA 0.15f
+
+// ================================< Classes >=================================
 
 /// @brief Classe estática que armazena as principais propriedades do programa, além
 ///        de armazenar métodos para configuração
@@ -38,5 +45,7 @@ class GameConfig{
 
         static void InputSettings();
 };
+
+// ================================< Funções >=================================
 
 void menu();

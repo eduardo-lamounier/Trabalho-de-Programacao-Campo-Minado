@@ -7,16 +7,18 @@ estruturas antes prototipadas no header "config.hpp"
 
 #include "../include/config.hpp"
 
-using namespace std;
+// ========================< Propriedades de classes >=========================
 
-// ====================< Propriedades da classe GameConfig >===================
+// ------------------------------/ GamesConfig /-------------------------------
 
 int GameConfig::Width = MIN_WIDTH_ND_HEIGHT;
 int GameConfig::Height = MIN_WIDTH_ND_HEIGHT;
 int GameConfig::TotalBombs = MIN_BOMBS_PER_AREA * (/*Area*/ MIN_WIDTH_ND_HEIGHT * MIN_WIDTH_ND_HEIGHT);
 int GameConfig::NoBombsRegion = MIN_NO_BOMBS_REGION;
 
-// ======================< Métodos da classe GameConfig >======================
+// ===========================< Métodos de classes >===========================
+
+// ------------------------------/ GamesConfig /-------------------------------
 
 /// @brief Acessa uma propriedade expecifica da classe GameConfig
 /// @param property Uma referência ao início de uma string, cujo texto 
@@ -43,7 +45,7 @@ void GameConfig::InputSettings(){
     // (Lógica aqui)
 }
 
-// ================================< Menu >====================================
+// ==============================< Funções >===================================
 
 /// @brief Carrega o menu, mostrando as primeiras opções para o usuário
 void menu(){
