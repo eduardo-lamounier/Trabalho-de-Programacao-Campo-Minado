@@ -17,24 +17,27 @@ all: app config-test
 
 # Linka e produz as aplicações:
 app: $(APP_SOURCES)
-	@echo "Linkando e produzindo a aplicacao final"
-	$(CC) $(FLAGS) $(APP_SOURCES) -o $(APLICACAO)
+	@echo ...Linkando e produzindo a aplicacao final
+	@$(CC) $(FLAGS) $(APP_SOURCES) -o $(APLICACAO)
 
 config-test: $(TEST_CONFIG_SOURCES)
-	@echo "Linkando e produzindo a aplicacao teste para config.hpp"
-	$(CC) $(FLAG) $(TEST_CONFIG_SOURCES) -o $(TESTE_CONFIG)
+	@echo ...Linkando e produzindo a aplicacao teste para config.hpp
+	@$(CC) $(FLAG) $(TEST_CONFIG_SOURCES) -o $(TESTE_CONFIG)
 
 # Roda a aplicação final:
 run-app: app
-	@echo "Rodando a aplicacao final"
-	$(APLICACAO)
+	@echo ...Rodando a aplicacao final
+	@echo ================================================================================
+	@$(APLICACAO)
+	@echo ================================================================================
 
 # Roda os testes específicos:
 run-config-test: config-test
-	@echo "Executando a aplicacao teste para config.hpp"
-	$(TESTE_CONFIG)
+	@echo ...Executando a aplicacao teste para config.hpp
+	@echo ================================================================================
+	@$(TESTE_CONFIG)
+	@echo ================================================================================
 
 # Remove todos os elementos (com exceção dos arquivos source):
 clean:
-	@echo "Removendo tudo com excecao dos arquivos source"
-	del /Q *.exe
+	@del /Q *.exe
