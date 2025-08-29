@@ -47,7 +47,7 @@ class GameConfig{
     
         /* Construtor privado (Classe estática) */ GameConfig(){};
     public: 
-        static int Get(std::string& property);
+        static int Get(const std::string& property);
 
         static void InputSettings();
 };

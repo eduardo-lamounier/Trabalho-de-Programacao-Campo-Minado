@@ -30,7 +30,7 @@ int GameConfig::NoBombsRegion = MIN_NO_BOMBS_REGION;
 ///                 ao nome da propriedade a ser acessada
 /// @return Retorna o valor inteiro da propriedade corespondente
 /// @note Lança uma exceção para uma string inválida
-int GameConfig::Get(std::string& property){
+int GameConfig::Get(const std::string& property){
     if(property == "Width"){
         return Width;
     }else if(property == "Height"){
