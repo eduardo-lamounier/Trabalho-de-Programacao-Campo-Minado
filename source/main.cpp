@@ -6,8 +6,6 @@ Arquivo que ao ser compilado, vai dar origem ao executável do jogo
 
 #include "..\include\config.hpp"
 
-using namespace std;
-
 // ==================================< main >==================================
 
 int main(int argc, char *argv[]){

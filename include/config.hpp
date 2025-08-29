@@ -20,9 +20,6 @@ leia a documentação
 // ------------------------------/ Bibliotecas /-------------------------------
 #include<string>
 
-// -------------------------------/ Namespaces /-------------------------------
-using namespace std;
-
 // ===========================< Constantes globais >===========================
 
 // Quantidade mínima e máxima de linhas e colunas:
@@ -49,7 +46,7 @@ class GameConfig{
     
         /* Construtor privado (Classe estática) */ GameConfig(){};
     public: 
-        static int Get(std::string property);
+        static int Get(std::string& property);
 
         static void InputSettings();
 };
