@@ -28,5 +28,5 @@ O código fonte do jogo está na pasta source, onde o programa principal main.cp
 junto com todos os outros arquivos da pasta para criar a aplicação. A aplicação, assim como os
 executáveis usados para testar o jogo, é guardada na pasta bin; enquanto os headers (.hpp) são guardados na pasta include e implementadas por scripts da pasta source.  
 
-A aplicação principal e os executáveis dos testes são compilados usando make e uma Makefile, mas em alguns casos executa-se pelo próprio VS Code.  
+A aplicação principal e os executáveis dos testes são compilados usando make e uma Makefile.  
 
