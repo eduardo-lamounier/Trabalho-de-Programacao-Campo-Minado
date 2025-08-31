@@ -11,6 +11,7 @@ jogo, além da função geral que cria o menu do jogo.
 Para ver os detalhes do uso das funções e métodos, passe o mouse por cima e
 leia a documentação
 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 */
 
 #pragma once
@@ -28,25 +29,33 @@ leia a documentação
 #define MAX_WIDTH_ND_HEIGHT 40
 
 // Porcentagem mínima e máxima de bombas por unidade de área:
-#define MIN_BOMBS_PER_AREA 0.20f
-#define MAX_BOMBS_PER_AREA 0.80f
+#define MIN_BOMBS_PER_AREA 0.30f
+#define MAX_BOMBS_PER_AREA 0.85f
 
-// Porcentagem mínima e máxima de espaço reservado sem bombas:
-#define MIN_NO_BOMBS_REGION 3
-#define MAX_NO_BOMBS_REGION_PER_TOTAL_AREA 0.15f
+#define MIN_NO_BOMBS_REGION 9 // Quantidade mínima de quadrados reservados sem
+                              // bombas
+#define MAX_NO_BOMBS_REGION_PER_TOTAL_AREA 0.15f // Porcentagem máxima de 
+                                                 // espaço reservado sem bombas
 
 // ================================< Classes >=================================
 
-/// @brief Classe estática que armazena as principais propriedades do programa, além
-///        de armazenar métodos para configuração
+/// @brief Classe estática que armazena as principais propriedades do programa,
+///        além de armazenar métodos para configuração
 class GameConfig{
     private:
-        static int Width, Height; // Quantidade de colunas e linhas, respectivamente
+        // ---------------------/ Propriedades privadas /----------------------
+
+        static int Width, Height; // Quantidade de colunas e linhas, 
+                                  // respectivamente
         static int TotalBombs;
         static int NoBombsRegion;
     
-        /* Construtor privado (Classe estática) */ GameConfig(){};
-    public: 
+        // ------------------------/ Métodos privados /------------------------
+
+        /* Construtor privado (Classe estática): */ GameConfig();
+    public:
+        // ------------------------/ Métodos públicos /------------------------
+
         static int Get(const std::string& property);
 
         static void InputSettings();
