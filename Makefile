@@ -6,8 +6,6 @@ FLAGS = -Wall -Iinclude
 APLICACAO = bin/app.exe
 TESTE_CONFIG = bin/configTest.exe
 
-# Fontes específicas:
-
 # Fontes para cada executável:
 APP_SOURCES = $(wildcard source/*.cpp) # Todos os arquivos .cpp em source
 TEST_CONFIG_SOURCES = testing/configTest.cpp source/config.cpp
