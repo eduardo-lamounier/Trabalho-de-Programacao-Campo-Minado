@@ -29,22 +29,27 @@ int GameConfig::NoBombsRegion = MIN_NO_BOMBS_REGION;
 /// @param property Uma referência a uma string, cujo texto corresponde
 ///                 ao nome da propriedade a ser acessada
 /// @return Retorna o valor inteiro da propriedade corespondente
+/// @note O texto da string deve ter o nome da propriedade digitado exatamente
+///       igual na declaração  
 /// @note Lança uma exceção para uma string inválida
 int GameConfig::Get(const std::string& property){
     if(property == "Width"){
         return Width;
-    }else if(property == "Height"){
-        return Height;
-    }else if(property == "TotalBombs"){
-        return TotalBombs;
-    }else if(property == "NoBombsRegion"){
-        return NoBombsRegion;
-    }else{
-        throw("Argumento inválido passado para a função: int GameConfig::Get(std::string& property). Digite uma string correspondente a alguma propriedade válida da classe GameConfig.\n");
     }
+    if(property == "Height"){
+        return Height;
+    }
+    if(property == "TotalBombs"){
+        return TotalBombs;
+    }
+    if(property == "NoBombsRegion"){
+        return NoBombsRegion;
+    }
+    
+    throw("Argumento inválido passado para a função: int GameConfig::Get(std::string& property). Digite uma string correspondente a alguma propriedade válida da classe GameConfig.\n");
 }
 
-/// @brief Faz o input das configurações escolhidas pelo usuário, e armazena na
+/// @brief Faz a leitura das configurações escolhidas pelo usuário, e armazena na
 ///        classe GameConfig
 void GameConfig::InputSettings(){
     // (Lógica aqui)
