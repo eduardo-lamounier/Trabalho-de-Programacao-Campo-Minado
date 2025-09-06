@@ -19,8 +19,11 @@ leia a documentação
 // ===================< Bibliotecas, headers e namespaces >====================
 
 // ------------------------------/ Bibliotecas /-------------------------------
+
 #include<iostream>
 #include<string>
+#include<algorithm>
+#include<cctype>
 
 // ===========================< Constantes globais >===========================
 
@@ -56,11 +59,11 @@ class GameConfig{
     public:
         // ------------------------/ Métodos públicos /------------------------
 
-        static int Get(const std::string& property);
+        static int Get(std::string property);
 
         static void InputSettings();
 };
 
 // ================================< Funções >=================================
 
-void menu();
+// [...]
