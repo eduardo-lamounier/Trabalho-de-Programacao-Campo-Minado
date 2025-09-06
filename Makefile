@@ -8,7 +8,7 @@ TESTE_CONFIG = bin/configTest.exe
 
 # Fontes para cada executável:
 APP_SOURCES = $(wildcard source/*.cpp) # Todos os arquivos .cpp em source
-TEST_CONFIG_SOURCES = testing/configTest.cpp source/config.cpp
+TEST_CONFIG_SOURCES = tests/configTest.cpp source/config.cpp
 
 # Target padrão: Compila tudo:
 all: app config-test
