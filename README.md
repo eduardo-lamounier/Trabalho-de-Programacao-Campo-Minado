@@ -5,13 +5,8 @@ Esse repositório contém a documentação completa do jogo de campo minado dese
 **Envolvidos:** Eduardo, Heitor, Miguel (alunos) e Henrico (professor orientador);  
 **Linguagem:** C++;  
 
-Desenvolvido no Visual Studio Code.  
-
 # Sobre o jogo
-O jogo gera um mapa de acordo com as especificações do usuário: altura (quant. de linhas), largura (quant. de colunas), quant. de bombas etc. Depois, o jogo continua da maneira usual: O jogador pode escolher uma posição para cavar, e mostrar quantas bombas são ao redor; ou escolher uma posição para colocar uma bandeira, se ele achar que há uma bomba naquela posição. O jogador ganha se liberar todos os espaços que não tem bombas (usar as bandeiras é critério do jogador). Para cavar e colocar a bandeira, o usuário escreve, respectivamente, os comandos 'dig' e 'flag' (onde i e j são números inteiros de critério do usuário, e que podem variar de 5 a 40):  
-
-`> dig i, j` -> cava do quadrado na linha i e coluna j  
-`> flag i, j` -> coloca uma bandeira na linha i e coluna j  
+O jogo gera um mapa de acordo com as especificações do usuário: altura (quant. de linhas), largura (quant. de colunas), quant. de bombas etc. Depois, o jogo continua da maneira usual: O jogador pode escolher uma posição para cavar, e mostrar quantas bombas estão ao redor; ou escolher uma posição para colocar uma bandeira, se ele achar que há uma bomba naquela posição. O jogador ganha se liberar todos os espaços que não tem bombas (usar as bandeiras é critério do jogador). Para cavar e colocar a bandeira, o usuário escreve, respectivamente, os comandos 'dig' e 'flag' (todos os comandos vão estar no final do README, no capítulo **Instruções e referência**).  
 
 A cada comando, uma função para atualizar o tabuleiro é chamada, apagando o texto antes do comando e re-imprimindo o tabuleiro. O usuário pode sair do jogo, finalizando o programa, a qualquer momento da execução; ao inserir o comando 'exit' no terminal, mostrando a pontuação total adquirida durante o tempo de execução. Uma certa quant. de pontos é adquirida no fim de cada jogo, sendo calculada de acordo com o quanto o jogador avançou no jogo (espaços cavados) e com a dificuldade (proporcional à densidade de bombas: quant. de bombas por quadrado, em média).  
 
@@ -32,8 +27,15 @@ A aplicação principal e os executáveis dos testes são compilados usando make
 
 Para rodar a aplicação principal, basta digitar no terminal - com a pasta do repositório aberta - o comando:  
 
-`> bin/app.exe` (`app.exe` dentro da pasta bin/),  
+`> bin/app.exe` (`app.exe` se estiver dentro da pasta bin/),  
 ou até:  
 `> make run-app`, caso tiver make instalado no seu computador.  
 
-enquanto está com a pasta do repositório aberta no terminal. 
+enquanto está com a pasta do repositório aberta no terminal.  
+
+Os comandos que podem ser usados durante o jogo são:  
+`> dig i, j` -> cava do quadrado na linha i e coluna j  
+`> flag i, j` -> coloca uma bandeira na linha i e coluna j  
+`> exit game` -> Sai do jogo, ganhando os pontos correspondentes à dificuldade e o progresso  
+
+Já no menu, o usuário deve selecionar alguma das 3 opções principais exibidas: *play*, *settings* e *exit*. Vale dizer que sempre que o usuário tiver acabado de entrar no jogo, ele vai ser obrigado a configurar o jogo antes do iniciar um jogo.  
