@@ -8,6 +8,7 @@ estruturas antes prototipadas no header "config.hpp"
 Para ver os detalhes do uso das funções e métodos, passe o mouse por cima e
 leia a documentação
 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 */
 
 #include "../include/config.hpp"
@@ -16,6 +17,7 @@ leia a documentação
 
 // ------------------------------/ GamesConfig /-------------------------------
 
+// São inicializadas com valores mínimos
 int GameConfig::Width = MIN_WIDTH_ND_HEIGHT;
 int GameConfig::Height = MIN_WIDTH_ND_HEIGHT;
 int GameConfig::TotalBombs = MIN_BOMBS_PER_AREA * (/* Area */ MIN_WIDTH_ND_HEIGHT * MIN_WIDTH_ND_HEIGHT);
