@@ -25,13 +25,11 @@ A aplicação principal e os executáveis dos testes são compilados usando make
 
 # Intruções e referência
 
-Para rodar a aplicação principal, basta digitar no terminal - com a pasta do repositório aberta - o comando:  
+Para rodar a aplicação principal, basta digitar no terminal, enquanto está com a pasta do repositório aberta, o comando:   
 
 `> bin/app.exe` (`app.exe` se estiver dentro da pasta bin/),
-ou até:  
+ou até  
 `> make run-app`, caso tiver make instalado no seu computador.  
-
-enquanto está com a pasta do repositório aberta no terminal.  
 
 Os comandos que podem ser usados durante o jogo são:  
 `> dig i, j` -> cava do quadrado na linha i e coluna j  
