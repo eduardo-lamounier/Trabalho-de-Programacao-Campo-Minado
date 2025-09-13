@@ -1,6 +1,7 @@
 /*
 
 Criado em: 27/08/2025 por Eduardo
+Responsabilidade de: Miguel
 Finalizado em: --/--/2025
 
 # Visão geral:
@@ -9,7 +10,7 @@ jogo, além da função geral que cria o menu do jogo.
 
 # Uso:
 Para ver os detalhes do uso das funções e métodos, passe o mouse por cima e
-leia a documentação
+leia a documentação escrita no arquivo .cpp
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 */
@@ -59,9 +60,13 @@ class GameConfig{
     public:
         // ------------------------/ Métodos públicos /------------------------
 
-        static int Get(std::string property);
+        static int Get(std::string property); // Acessa as propriedades
+                                              // privadas da classe
+                                              // (encapsulação)
 
-        static void InputSettings();
+        static void InputSettings(); // Configura as propriedades da classe de
+                                     // acordo com a leitura do input do
+                                     // usuário
 };
 
 // ================================< Funções >=================================
