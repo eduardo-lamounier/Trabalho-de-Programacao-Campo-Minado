@@ -21,10 +21,7 @@ leia a documentação escrita no arquivo .cpp
 
 // ------------------------------/ Bibliotecas /-------------------------------
 
-#include<iostream>
-#include<string>
-#include<algorithm>
-#include<cctype>
+#include "common.hpp" // Inclusão de todas as bibliotecas padrão de C++
 
 // ===========================< Constantes globais >===========================
 
