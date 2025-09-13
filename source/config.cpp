@@ -1,12 +1,17 @@
 /*
 
+Criado em: 27/08/2025 por Eduardo
+Responsabilidade de: Miguel
+Finalizado em: --/--/2025
+
 # Visão geral:
-Arquivo .cpp complementar para implementar as funções, constantes, classes e 
-estruturas antes prototipadas no header "config.hpp"
+Arquivo .cpp complementar para implementar as funções, classes e 
+estruturas e utilizar as contantes e variáveis globais antes prototipadas no
+header: "config.hpp"
 
 # Uso:
-Para ver os detalhes do uso das funções e métodos, passe o mouse por cima e
-leia a documentação
+Para ver os detalhes do uso das funções e métodos, leia a documentação em
+formato Doxygen acima do cabeçalho da função
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 */
