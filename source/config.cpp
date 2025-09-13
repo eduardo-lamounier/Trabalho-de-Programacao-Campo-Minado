@@ -63,10 +63,41 @@ int GameConfig::Get(std::string property){
 /// @brief Faz a leitura das configurações escolhidas pelo usuário, e armazena
 ///        elas na classe GameConfig
 void GameConfig::InputSettings(){
-// Primeira versão da configuração v.1.0
+// Segunda versão da configuração v.2
+    
+    // ------------------------------------------------------------------------
+    /// @brief Valida a leitura das configurações
+    /// @param configs Um conjunto de referências às variáveis que vão
+    ///                armazenar as configurações antes da confirmação pelo usuário
+    /// @param min O valor mínimo que essas configurações podem assumir
+    /// @param max O valor máximo que essas configurações podem assumir
+    const auto validation = [] (std::vector<int*> configs, const int min, const int max){
+        bool valid;
 
-// TODO: generalizar partes do código (como por exemplo a validação),
-// transformando-as em funções, se possível
+        /// @brief Verifica se as configurações são válidas depois de repetir
+        ///        o input, atualizando 'valid'
+        const auto updateValidation = [&valid, &configs, min, max] (){
+            valid = true;
+
+            for(auto config : configs){
+                valid = valid && *config >= min && *config <= max;
+            }
+        };
+
+        updateValidation();
+        while(!valid){
+            std::cout << "Digite valores validos";
+            std::cout << "[min: " << min << ", max:" << max << "]:\n";
+            
+            for(auto config : configs) std::cin >> *config;
+
+            updateValidation();
+        }
+    };
+    // ------------------------------------------------------------------------
+
+    // TODO: Generalizar a operação de entrada dos valores e sua confirmação,
+    // assim como foi feito com a operação de validação
 
     int width, height, totalBombs, noBombsRegion;
     char confirmation = 'N';
@@ -74,21 +105,21 @@ void GameConfig::InputSettings(){
     // Entrada da altura e largura do campo minado:
     do{
         // Leitura inicial/principal:
-        std::cout << "Digite a altura e largura do campo, respectivamente [min:" << MIN_WIDTH_ND_HEIGHT << ", max:" << MAX_WIDTH_ND_HEIGHT << "]:\n";
+        std::cout << "Digite a altura e largura do campo, respectivamente";
+        std::cout << " [min:" << MIN_WIDTH_ND_HEIGHT;
+        std::cout << ", max:" << MAX_WIDTH_ND_HEIGHT << "]:\n";
         
         std::cin >> width;
         std::cin >> height;
 
         // Validação da entrada:
-        while((width < MIN_WIDTH_ND_HEIGHT || width > MAX_WIDTH_ND_HEIGHT) || (height < MIN_WIDTH_ND_HEIGHT || height > MAX_WIDTH_ND_HEIGHT)){
-            std::cout << "Digite valores validos[min:" << MIN_WIDTH_ND_HEIGHT << ", max:" << MAX_WIDTH_ND_HEIGHT << "]:\n";
-
-            std::cin >> width;
-            std::cin >> height;
-        }
+        validation({&width, &height}, MIN_WIDTH_ND_HEIGHT, MAX_WIDTH_ND_HEIGHT);
 
         // Confirmação:
-        std::cout << "Confirmar: |altura = " << height << "|, |largura = " << width << "| [S/N]?\n";
+        std::cout << "Confirmar: ";
+        std::cout << "|altura = " << height << "|, ";
+        std::cout << "|largura = " << width << "| [S/N]?\n";
+
         std::cin >> confirmation;
     }while(confirmation != 'S');
 
@@ -96,47 +127,43 @@ void GameConfig::InputSettings(){
     GameConfig::Height = height;
 
     // ------------------------------------------------------------------------
-    int area = width * height;
+    const int area = width * height;
 
-    int minBombs = MIN_BOMBS_PER_AREA * area;
-    int maxBombs = MAX_BOMBS_PER_AREA * area;
+    const int minBombs = MIN_BOMBS_PER_AREA * area;
+    const int maxBombs = MAX_BOMBS_PER_AREA * area;
 
     // Entrada do número de bombas:
     do{
         // Leitura inicial/principal:
-        std::cout << "Digite o numero total de bombas[min:" << minBombs << ", max:" << maxBombs << "]:\n";
+        std::cout << "Digite o numero total de bombas";
+        std::cout << "[min:" << minBombs << ", max:" << maxBombs << "]:\n";
         
         std::cin >> totalBombs;
 
         // Validação da entrada:
-        while(totalBombs < minBombs || totalBombs > maxBombs){
-            std::cout << "Digite um valor valido[min:" << minBombs << ", max:" << maxBombs << "]:\n";
-
-            std::cin >> totalBombs;
-        }
+        validation({&totalBombs}, minBombs, maxBombs);
 
         // Confirmação:
-        std::cout << "Confirmar: |total de bombas = " << totalBombs << "| [S/N]?\n";
+        std::cout << "Confirmar: ";
+        std::cout << "|total de bombas = " << totalBombs << "| [S/N]?\n";
         std::cin >> confirmation;
     }while(confirmation != 'S');
 
     GameConfig::TotalBombs = totalBombs;
 
-    int maxNoBombsRegion = MAX_NO_BOMBS_REGION_PER_TOTAL_AREA * area;
+    const int maxNoBombsRegion = MAX_NO_BOMBS_REGION_PER_TOTAL_AREA * area;
 
     // Entrada da região sem bombas inicial:
     do{
         // Leitura inicial/principal:
-        std::cout << "Digite o numero de quadrados reservados para ficar sem bombas (regiao inicialmente revelada)[min:" << MIN_NO_BOMBS_REGION << ", min:" << maxNoBombsRegion << "]:\n";
+        std::cout << "Digite o numero de quadrados reservados para ficar sem bombas";
+        std::cout << " (regiao inicialmente revelada)";
+        std::cout << "[min:" << MIN_NO_BOMBS_REGION << ", min:" << maxNoBombsRegion << "]:\n";
 
         std::cin >> noBombsRegion;
 
         // Validação da entrada:
-        while(noBombsRegion < MIN_NO_BOMBS_REGION || noBombsRegion > maxNoBombsRegion){
-            std::cout << "Digite um valor valido[min:" << MIN_NO_BOMBS_REGION << ", max:" << maxNoBombsRegion << "]:\n";
-
-            std::cin >> noBombsRegion;
-        }
+        validation({&noBombsRegion}, MIN_NO_BOMBS_REGION, maxNoBombsRegion);
 
         // Confirmação:
         std::cout << "Confirmar: |Regiao sem bombas = " << noBombsRegion << "| [S/N]?\n";
