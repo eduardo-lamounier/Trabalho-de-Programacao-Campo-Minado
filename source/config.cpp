@@ -166,7 +166,7 @@ void GameConfig::InputSettings(){
         validation({&noBombsRegion}, MIN_NO_BOMBS_REGION, maxNoBombsRegion);
 
         // Confirmação:
-        std::cout << "Confirmar: |Regiao sem bombas = " << noBombsRegion << "| [S/N]?\n";
+        std::cout << "Confirmar: |regiao sem bombas = " << noBombsRegion << "| [S/N]?\n";
         std::cin >> confirmation;
     }while(confirmation != 'S');
 

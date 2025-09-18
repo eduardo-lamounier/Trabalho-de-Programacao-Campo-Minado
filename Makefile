@@ -4,7 +4,7 @@
 # Finalizado em: --/--/2025
 #
 # # Visão geral:
-# Programa usado para facilitar a compilação os executáveis do projeto, assim
+# Programa usado para facilitar a compilação dos executáveis do projeto, assim
 # como serve para organizar a execução de diferentes executáveis (em /bin)
 #
 # # Uso:
@@ -12,7 +12,7 @@
 # 	* Use o comando 'make all' para compilar todos os arquivos fontes (na pasta
 # /source)
 # 	* Use o comando 'make featname-test' para compilar o programa que testa a
-# feature 'featname' (é o nome de algum header da basta /include)
+# feature 'featname' (é o nome de algum header da pasta /include)
 # 	* Use o comando 'make run-app' para rodar a aplicação 
 # 	* Use o comando 'make run-featname-test' (onde 'featname' é o nome da
 # feature, algum header da pasta /include) para rodar o programa de teste
@@ -21,7 +21,7 @@
 
 # Compilador e flags:
 CC = g++
-FLAGS = -Wall -Iinclude
+FLAGS = -Wall -Iinclude # Sujeito a adições
 
 # Nomes dos executáveis:
 APLICACAO = bin/app.exe
