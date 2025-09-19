@@ -68,10 +68,12 @@ void GameConfig::InputSettings(){
     // ------------------------------------------------------------------------
     /// @brief Valida a leitura das configurações
     /// @param configs Um conjunto de referências às variáveis que vão
-    ///                armazenar as configurações antes da confirmação pelo usuário
+    ///                armazenar as configurações antes da confirmação pelo
+    ///                usuário
     /// @param min O valor mínimo que essas configurações podem assumir
     /// @param max O valor máximo que essas configurações podem assumir
-    const auto validation = [] (std::vector<int*> configs, const int min, const int max){
+    const auto validation = [] (std::vector<int*> configs, const int min,
+                                const int max){
         bool valid;
 
         /// @brief Verifica se as configurações são válidas depois de repetir
@@ -106,7 +108,7 @@ void GameConfig::InputSettings(){
     do{
         // Leitura inicial/principal:
         std::cout << "Digite a altura e largura do campo, respectivamente";
-        std::cout << " [min:" << MIN_WIDTH_ND_HEIGHT;
+        std::cout << "[min:" << MIN_WIDTH_ND_HEIGHT;
         std::cout << ", max:" << MAX_WIDTH_ND_HEIGHT << "]:\n";
         
         std::cin >> width;
