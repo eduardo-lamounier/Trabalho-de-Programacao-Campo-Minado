@@ -5,8 +5,8 @@ Responsabilidade de: Miguel
 Finalizado em: --/--/2025
 
 # Visão geral:
-Um header com as funções de inicialização dos dados, configuração das opções do
-jogo, além da função geral que cria o menu do jogo.
+Um header com o protótipo das funções de inicialização dos dados, configuração
+das opções do jogo.
 
 # Uso:
 Para ver os detalhes do uso das funções e métodos, passe o mouse por cima e
