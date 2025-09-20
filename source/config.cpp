@@ -6,7 +6,7 @@ Finalizado em: --/--/2025
 
 # Visão geral:
 Arquivo .cpp complementar para implementar as funções, classes e 
-estruturas e utilizar as contantes e variáveis globais antes prototipadas no
+estruturas e utilizar as contantes e variáveis globais antes protótipadas no
 header: "config.hpp"
 
 # Uso:
@@ -45,16 +45,16 @@ int GameConfig::Get(std::string property){
     std::transform(property.begin(), property.end(), property.begin(), ::toupper);
 
     if(property == "WIDTH"){
-        return Width;
+        return GameConfig::Width;
     }
     if(property == "HEIGHT"){
-        return Height;
+        return GameConfig::Height;
     }
     if(property == "TOTALBOMBS"){
-        return TotalBombs;
+        return GameConfig::TotalBombs;
     }
     if(property == "NOBOMBSREGION"){
-        return NoBombsRegion;
+        return GameConfig::TotalBombs;
     }
     
     throw("Argumento invalido passado para a funcao: int GameConfig::Get(std::string property). Eh necessario passar uma string correspondente a alguma propriedade existente na classe GameConfig.\n");
@@ -65,7 +65,7 @@ int GameConfig::Get(std::string property){
 void GameConfig::InputSettings(){
 // Segunda versão da configuração v.2
     
-    // ------------------------------------------------------------------------
+// ------------------------------------------------------------------------
     /// @brief Valida a leitura das configurações
     /// @param configs Um conjunto de referências às variáveis que vão
     ///                armazenar as configurações antes da confirmação pelo
@@ -96,7 +96,7 @@ void GameConfig::InputSettings(){
             updateValidation();
         }
     };
-    // ------------------------------------------------------------------------
+// ------------------------------------------------------------------------
 
     // TODO: Generalizar a operação de entrada dos valores e sua confirmação,
     // assim como foi feito com a operação de validação
