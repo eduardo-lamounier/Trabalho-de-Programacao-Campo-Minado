@@ -42,7 +42,7 @@ leia a documentação escrita no arquivo .cpp
 
 /// @brief Classe estática que armazena as principais propriedades do programa,
 ///        além de armazenar métodos para configuração
-class GameConfig{
+class GameConfig {
     private:
         // ---------------------/ Propriedades privadas /----------------------
 
