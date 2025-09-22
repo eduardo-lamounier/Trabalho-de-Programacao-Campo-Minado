@@ -65,6 +65,11 @@ int GameConfig::Get(std::string property){
 void GameConfig::InputSettings(){
 // Segunda versão da configuração v.2
     
+// TODO: Generalizar a operação de entrada dos valores e sua confirmação,
+// assim como foi feito com a operação de validação
+
+// TOFIX: A região sem bombas está sempre sendo igual à quantidade total de bombas
+
 // ------------------------------------------------------------------------
     /// @brief Valida a leitura das configurações
     /// @param configs Um conjunto de referências às variáveis que vão
@@ -98,9 +103,6 @@ void GameConfig::InputSettings(){
     };
 // ------------------------------------------------------------------------
 
-    // TODO: Generalizar a operação de entrada dos valores e sua confirmação,
-    // assim como foi feito com a operação de validação
-
     int width, height, totalBombs, noBombsRegion;
     char confirmation = 'N';
     
@@ -115,7 +117,7 @@ void GameConfig::InputSettings(){
         std::cin >> height;
 
         // Validação da entrada:
-        validation({&width, &height}, MIN_WIDTH_ND_HEIGHT, MAX_WIDTH_ND_HEIGHT);
+        validation({&height, &width}, MIN_WIDTH_ND_HEIGHT, MAX_WIDTH_ND_HEIGHT);
 
         // Confirmação:
         std::cout << "Confirmar: ";
