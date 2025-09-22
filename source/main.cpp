@@ -14,7 +14,7 @@ ser o arquivo de implmentação do menu
 
 // ==================================< main >==================================
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
     // (Talvez pegar dados do usuário como nickname e afins para colocar em
     // uma classe - apenas uma ideia)
     // menu(); // Cria o menu e pede pelas primeiras entradas do usuário
