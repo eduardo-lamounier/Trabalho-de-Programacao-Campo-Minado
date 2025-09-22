@@ -17,7 +17,7 @@ void printConfigs(); // Imprime as configurações de GameConfig
 
 // ==================================< Main >==================================
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
     // Verificação da função Get() e dos valores inicialmente atribuídos às 
     // propriedades de GameConfig:
     printConfigs();
@@ -32,7 +32,7 @@ int main(int argc, char *argv[]){
 }
 
 /// @brief Imprime todas as propriedades de GameConfig
-void printConfigs(){
+void printConfigs() {
     using namespace std;
     
     cout << "GameConfig::Width = " << GameConfig::Get("Width") << '\n';
