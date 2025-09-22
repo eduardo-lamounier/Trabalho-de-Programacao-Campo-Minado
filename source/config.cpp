@@ -39,21 +39,21 @@ int GameConfig::NoBombsRegion = MIN_NO_BOMBS_REGION;
 /// @note O texto na string deve ser correspondente a uma propriedade válida, 
 ///       independentemente das letras minúsculas ou maiúsculas
 /// @note Lança uma exceção para uma string inválida
-int GameConfig::Get(std::string property){
+int GameConfig::Get(std::string property) {
     // Deixa a string toda maiúscula (assim não importa se os caracteres
     // estavam em maiúsculo ou minúsculo):
     std::transform(property.begin(), property.end(), property.begin(), ::toupper);
 
-    if(property == "WIDTH"){
+    if(property == "WIDTH") {
         return GameConfig::Width;
     }
-    if(property == "HEIGHT"){
+    if(property == "HEIGHT") {
         return GameConfig::Height;
     }
-    if(property == "TOTALBOMBS"){
+    if(property == "TOTALBOMBS") {
         return GameConfig::TotalBombs;
     }
-    if(property == "NOBOMBSREGION"){
+    if(property == "NOBOMBSREGION") {
         return GameConfig::TotalBombs;
     }
     
@@ -62,7 +62,7 @@ int GameConfig::Get(std::string property){
 
 /// @brief Faz a leitura das configurações escolhidas pelo usuário, e armazena
 ///        elas na classe GameConfig
-void GameConfig::InputSettings(){
+void GameConfig::InputSettings() {
 // Segunda versão da configuração v.2
     
 // TODO: Generalizar a operação de entrada dos valores e sua confirmação,
@@ -78,12 +78,12 @@ void GameConfig::InputSettings(){
     /// @param min O valor mínimo que essas configurações podem assumir
     /// @param max O valor máximo que essas configurações podem assumir
     const auto validation = [] (std::vector<int*> configs, const int min,
-                                const int max){
+                                const int max) {
         bool valid;
 
         /// @brief Verifica se as configurações são válidas depois de repetir
         ///        o input, atualizando 'valid'
-        const auto updateValidation = [&valid, &configs, min, max] (){
+        const auto updateValidation = [&valid, &configs, min, max] () {
             valid = true;
 
             for(auto config : configs){
@@ -107,7 +107,7 @@ void GameConfig::InputSettings(){
     char confirmation = 'N';
     
     // Entrada da altura e largura do campo minado:
-    do{
+    do {
         // Leitura inicial/principal:
         std::cout << "Digite a altura e largura do campo, respectivamente";
         std::cout << "[min:" << MIN_WIDTH_ND_HEIGHT;
@@ -137,7 +137,7 @@ void GameConfig::InputSettings(){
     const int maxBombs = MAX_BOMBS_PER_AREA * area;
 
     // Entrada do número de bombas:
-    do{
+    do {
         // Leitura inicial/principal:
         std::cout << "Digite o numero total de bombas";
         std::cout << "[min:" << minBombs << ", max:" << maxBombs << "]:\n";
@@ -158,7 +158,7 @@ void GameConfig::InputSettings(){
     const int maxNoBombsRegion = MAX_NO_BOMBS_REGION_PER_TOTAL_AREA * area;
 
     // Entrada da região sem bombas inicial:
-    do{
+    do {
         // Leitura inicial/principal:
         std::cout << "Digite o numero de quadrados reservados para ficar sem bombas";
         std::cout << " (regiao inicialmente revelada)";
