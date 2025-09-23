@@ -30,25 +30,28 @@ void menu() {
     int jogar_config_sair;
     bool entradaValida;
 
-    printf("\n\nCampo Minado\n\nJogo feito por Eduardo Lamounier, Heitor Freitas e Miguel Peterson\n.");
+    std::cout << "\n\nCampo Minado\n\nJogo feito por Eduardo, Heitor e Miguel\n.";
 
-    printf("Digite:\n1.Jogar\n2.Configuracões\n3.Sair");
-    scanf("%d", &jogar_config_sair);
+    std::cout << "Digite:\n1.Jogar\n2.Configuracões\n3.Sair";
+    std::cin >> jogar_config_sair;
 
     while(!entradaValida) {
         entradaValida = jogar_config_sair >= 1 && jogar_config_sair <= 3;
         switch (jogar_config_sair) {
             case '1':
-                /* code */
+                // Jogar
                 break;
             case '2':
+                // Configurar
                 break;
             case '3':
-                printf("nao vou jogar campo minado nao, o silksong me espera");
+                // Sair
+                std::cout << "\n<Programa finalizado, obrigado por jogar!\n";
                 break;
             default:
+                // Usuário é um imbecil
                 break;
-                printf("1, 2 ou 3");
+                std::cout << "Digite uma opção válida: [1-3]\n";
         }
     }
 }
