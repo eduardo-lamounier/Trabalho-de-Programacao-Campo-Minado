@@ -2,7 +2,7 @@
 
 Criado em: 27/08/2025 por Eduardo
 Responsabilidade de: Miguel
-Finalizado em: --/--/2025
+Finalizado em: 22/09/2025
 
 # Visão geral:
 Um header com o protótipo das funções de inicialização dos dados, configuração
@@ -65,7 +65,3 @@ class GameConfig {
                                      // acordo com a leitura do input do
                                      // usuário
 };
-
-// ================================< Funções >=================================
-
-// [...]
