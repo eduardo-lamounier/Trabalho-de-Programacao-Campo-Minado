@@ -78,26 +78,26 @@ void GameConfig::InputSettings() {
     /// @param max O valor máximo que essas configurações podem assumir
     constexpr auto validation = [] (std::vector<int*> configs, const int min,
                                    const int max) {
-        bool valid;
-
+        
         /// @brief Verifica se as configurações são válidas depois de repetir
-        ///        o input, atualizando 'valid'
-        const auto updateValidation = [&valid, &configs, min, max] () {
-            valid = true;
-            
+        ///        o input
+        /// @return Retorna se todas as configurações são válidas ou não
+        const auto validate = [&configs, min, max] () {
+            // Checa se alguma das configurações são inválidas:
             for(auto config : configs) {
-                valid = valid && *config >= min && *config <= max;
+                if(*config < min || *config > max) return false;
             }
-        };
 
-        updateValidation();
-        while(!valid) {
+            // Se chegou até aqui, todas as configurações são válidas
+            return true;
+        };
+        
+        while(!validate()) {
             std::cout << "Digite valores validos";
             std::cout << "[min: " << min << ", max:" << max << "]:\n";
             
+            std::cout << "> " << std::flush;
             for(auto config : configs) std::cin >> *config;
-
-            updateValidation();
         }
     };
 // ------------------------------------------------------------------------
