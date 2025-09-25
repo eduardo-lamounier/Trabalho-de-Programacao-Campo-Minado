@@ -57,7 +57,7 @@ class Field {
     private:
         // ---------------------/ Propriedades privadas /----------------------
 
-        static Matrix<FieldSquare*> Data; // Armazena a matriz do campo minado
+        static Matrix<FieldSquare> Data; // Armazena a matriz do campo minado
     
         // ------------------------/ Métodos privados /------------------------
         
@@ -65,11 +65,9 @@ class Field {
     public:
         // ------------------------/ Métodos públicos /------------------------
 
-        static FieldSquare *At(const index row, const index col);
+        static FieldSquare& At(const index row, const index col);
 
         static void Generate();
         
         static void Display();
-
-        static void Destroy();
 };

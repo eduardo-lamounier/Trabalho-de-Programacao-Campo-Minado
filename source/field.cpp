@@ -16,7 +16,7 @@ formato Doxygen acima do cabeçalho da função
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 */
 
-#include "../include/generation.hpp"
+#include "../include/field.hpp"
 
 // ===========================< Métodos de classes >===========================
 
@@ -76,9 +76,9 @@ FieldSquare::FieldSquare() {
 /// @param col A coluna dessa cédula
 /// @return Uma referência à posição correspondente
 /// @note Uma linha ou coluna inválida lança uma exceção
-FieldSquare *Field::At(const index row, const index col) {
+FieldSquare& Field::At(const index row, const index col) {
     return Field::Data.at(row).at(col); // Função .at() lança uma exceção para
-                                        // índice inválido
+                                         // índice inválido
 }
 
 /// @brief Gera o mapa do campo minado conforme as configurações do jogo
@@ -90,16 +90,4 @@ void Field::Generate() {
 /// @brief Exibe o campo minado para o jogador
 void Field::Display() {
     // Imprime o campo minado
-}
-
-/// @brief Libera a memória da matriz do campo minado
-void Field::Destroy() {
-    for(auto& row : Field::Data){
-        // Libera a referência para cada posição do campo:
-        for(auto& square : row) delete square;
-    }
-
-    Field::Data = {}; // <- Evita possível comportamento indevido se houver
-                      //    tentativa de acessar o elemento cuja referência
-                      //    foi liberada da memória
 }
