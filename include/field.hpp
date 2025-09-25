@@ -43,11 +43,16 @@ class FieldSquare {
         int BombsNearby; // Representa quantas bombas há ao redor dessa posição
                          // (-1 se for uma posição de bomba)
     public:
+        // ------------------------/ Métodos públicos /------------------------
+        
         int GetBombsNearby();
+
         bool BeingShown();
         
         void SetBombsNearby(const int bombsNearby);
+        
         void PlaceBomb();
+
         void See();
 
         FieldSquare();
