@@ -18,12 +18,13 @@ bool menu(int& points); // Protótipo da função dedicada à implementação do
 // ==================================< main >==================================
 
 int main(int argc, char *argv[]) {
+// TODO - só se sobrar tempo no planejamento:
+// - Salvar as pontuações de cada usuário em um arquivo e implementar login
+// e cadastro;
+// - Fazer um top melhores jogadores (mas provavelmente não seria muito
+// interessante porque só salvaria de maneira local)
+
     int totalPoints = 0;
-    // TODO - só se sobrar tempo no planejamento:
-    // - Salvar as pontuações de cada usuário em um arquivo e implementar login
-    // e cadastro;
-    // - Fazer um top melhores jogadores (mas provavelmente não seria muito
-    // interessante porque só salvaria de maneira local)
 
     while(!menu(totalPoints)); // Pede pelas primeiras entradas do usuário
                                // enquanto ele não desejar finalizar o programa
@@ -42,6 +43,7 @@ int main(int argc, char *argv[]) {
 ///               pontuações ganhas nos jogos vão ser somadas
 /// @return Se o programa deve finalizar ou não
 bool menu(int& points) {
+// Primeira versão do menu
     char opcao;
 
     std::cout << "\nBem-vindo ao Campo Minado\nJogo feito por: Eduardo, Heitor e Miguel\n\n";
