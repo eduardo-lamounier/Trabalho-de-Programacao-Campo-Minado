@@ -57,7 +57,11 @@ int GameConfig::Get(std::string property) {
         return GameConfig::NoBombsRegion;
     }
     
-    throw("Argumento invalido passado para a funcao: int GameConfig::Get(std::string property). Eh necessario passar uma string correspondente a alguma propriedade existente na classe GameConfig.\n");
+    std::string errorMessage = "Argumento invalido passado para a funcao: ";
+    errorMessage += "int GameConfig::Get(std::string property). ";
+    errorMessage += "Eh necessario passar uma string correspondente a alguma ";
+    errorMessage += "propriedade existente na classe GameConfig.\n";
+    throw(errorMessage);
 }
 
 /// @brief Faz a leitura das configurações escolhidas pelo usuário, e armazena
