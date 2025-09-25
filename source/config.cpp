@@ -179,7 +179,7 @@ void GameConfig::InputSettings() {
 
     // Entrada da região sem bombas inicialmente:
     message = "Digite o numero de quadrados reservados para ficarem";
-    message += "sem bombas (regiao inicialmente revelada)";
+    message += " sem bombas (regiao inicialmente revelada)";
 
     input(message, {&noBombsRegion}, {"regiao sem bombas"},
     MIN_NO_BOMBS_REGION, maxNoBombsRegion);
