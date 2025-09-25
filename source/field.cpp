@@ -42,8 +42,8 @@ bool FieldSquare::BeingShown() {
 /// @note Para um parâmetro inválido, essa função lança uma exceção
 /// @note Por mais que -1 represente a presença de uma bomba na posição, a
 ///       função que deve ser utilizada para colocar a bomba é:
-///       void FieldSquare::PlaceBomb(). sendo que -1 ao ser passado como
-///       argumento conta como valor inválido
+///       void FieldSquare::PlaceBomb(). Por isso, bombsNearby sendo -1 conta
+///       como valor inválido
 void FieldSquare::SetBombsNearby(const int bombsNearby) {
     std::string errorMessage = "Valor invalido passado para o metodo: ";
     errorMessage += "void FieldSquare::SetBombsNearb(const int bombsNearby).\n";
