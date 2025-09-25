@@ -16,7 +16,7 @@ formato Doxygen acima do cabeçalho da função
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 */
 
-#include "../include/game.hpp"
+#include "../include/match.hpp"
 
 // ================================< Funções >=================================
 

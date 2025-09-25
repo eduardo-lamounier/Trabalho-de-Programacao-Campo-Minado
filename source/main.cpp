@@ -11,7 +11,7 @@ ser o arquivo de implmentação do menu
 */
 
 #include "../include/config.hpp"
-#include "../include/game.hpp"
+#include "../include/match.hpp"
 
 bool menu(int& points); // Protótipo da função dedicada à implementação do menu
 
