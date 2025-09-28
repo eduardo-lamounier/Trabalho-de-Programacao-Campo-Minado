@@ -39,11 +39,10 @@ bool FieldSquare::BeingShown() {
 ///        por um parâmetro inválido)
 /// @param bombsNearby O valor que vai ser atribuído à quantidade de bombas
 ///                    ao redor da posição atual
-/// @note Para um parâmetro inválido, essa função lança uma exceção
+/// @note Não é possível existir mais de 8 bombas ao redor
 /// @note Por mais que -1 represente a presença de uma bomba na posição, a
 ///       função que deve ser utilizada para colocar a bomba é:
-///       void FieldSquare::PlaceBomb(). Por isso, bombsNearby sendo -1 conta
-///       como valor inválido
+///       void FieldSquare::PlaceBomb().
 void FieldSquare::SetBombsNearby(const int bombsNearby) {
     std::string errorMessage = "Valor invalido passado para o metodo: ";
     errorMessage += "void FieldSquare::SetBombsNearb(const int bombsNearby).\n";
@@ -78,7 +77,7 @@ FieldSquare::FieldSquare() {
 /// @note Uma linha ou coluna inválida lança uma exceção
 FieldSquare& Field::At(const index row, const index col) {
     return Field::Data.at(row).at(col); // Função .at() lança uma exceção para
-                                         // índice inválido
+                                        // índice inválido
 }
 
 /// @brief Gera o mapa do campo minado conforme as configurações do jogo
