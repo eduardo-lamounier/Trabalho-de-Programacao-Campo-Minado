@@ -59,7 +59,7 @@ void FieldSquare::PlaceBomb() {
 }
 
 /// @brief Faz com que a posição atual passe a ser exibida para o jogador
-void FieldSquare::See() {
+void FieldSquare::Reveal() {
     this->Shown = true;
 }
 

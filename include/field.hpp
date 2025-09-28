@@ -53,7 +53,7 @@ class FieldSquare {
         
         void PlaceBomb();
 
-        void See();
+        void Reveal();
 
         FieldSquare();
 };
