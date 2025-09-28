@@ -18,6 +18,12 @@ formato Doxygen acima do cabeçalho da função
 
 #include "../include/field.hpp"
 
+// ========================< Propriedades de classes >=========================
+
+// ---------------------------------/ Field /----------------------------------
+
+Matrix<FieldSquare> Field::Data = {};
+
 // ===========================< Métodos de classes >===========================
 
 // ------------------------------/ Field Square /------------------------------
