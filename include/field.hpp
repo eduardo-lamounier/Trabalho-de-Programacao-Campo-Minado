@@ -28,7 +28,7 @@ leia a documentação escrita no arquivo .cpp
 
 // =================================< Tipos >==================================
 
-typedef unsigned int index; // Esse tipo se refere a uma posição de array ou
+using index = unsigned int; // Esse tipo se refere a uma posição de array ou
                             // matriz
 
 template<typename T>
