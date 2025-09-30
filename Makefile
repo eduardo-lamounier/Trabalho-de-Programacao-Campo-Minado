@@ -26,10 +26,12 @@ FLAGS = -Wall -Iinclude # Sujeito a adições
 # Nomes dos executáveis:
 APLICACAO = bin/app.exe
 TESTE_CONFIG = bin/configTest.exe
+TESTE_CAMPO = bin/fieldTest.exe
 
 # Fontes para cada executável:
 APP_SOURCES = $(wildcard source/*.cpp) # Todos os arquivos .cpp em source
 TEST_CONFIG_SOURCES = tests/configTest.cpp source/config.cpp
+TEST_CAMPO_SOURCES = tests/fieldTest.cpp source/field.cpp
 
 # Target padrão: Compila tudo:
 all: app config-test
@@ -43,6 +45,10 @@ config-test: $(TEST_CONFIG_SOURCES)
 	@echo ...Linkando e produzindo a aplicacao teste para config.hpp
 	@$(CC) $(FLAG) $(TEST_CONFIG_SOURCES) -o $(TESTE_CONFIG)
 
+field-test: $(TEST_CAMPO_SOURCES)
+	@echo ...Linkando e produzindo a aplicacao teste para field.hpp
+	@$(CC) $(FLAG) $(TEST_CAMPO_SOURCES) -o $(TESTE_CAMPO)
+
 # Roda a aplicação final:
 run-app: app
 	@echo ...Rodando a aplicacao final
@@ -55,5 +61,11 @@ run-config-test: config-test
 	@echo ...Executando a aplicacao teste para config.hpp
 	@echo ================================================================================
 	@$(TESTE_CONFIG)
+	@echo ================================================================================
+
+run-field-test: field-test
+	@echo ...Executando a aplicacao teste para config.hpp
+	@echo ================================================================================
+	@$(TESTE_CAMPO)
 	@echo ================================================================================
 
