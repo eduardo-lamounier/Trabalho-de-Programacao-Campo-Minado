@@ -41,6 +41,12 @@ bool FieldSquare::BeingShown() {
     return this->Shown;
 }
 
+/// @brief Verifica se a posição atual tem uma bandeira
+/// @return O valor booleano correspondente
+bool FieldSquare::isFlaged() {
+    return this->Flaged;
+}
+
 /// @brief Atualiza a quantidade de bombas ao redor da posição atual (e checa
 ///        por um parâmetro inválido)
 /// @param bombsNearby O valor que vai ser atribuído à quantidade de bombas
@@ -63,6 +69,21 @@ void FieldSquare::PlaceBomb() {
     this->BombsNearby = -1;
 }
 
+/// @brief Coloca uma bandeira na posição atual
+/// @note Não funciona se a posição atual tiver sido revelada
+void FieldSquare::PlaceFlag() {
+    std::string errorMessage = "Não é possível colocar uma bandeira em uma";
+    errorMessage += " posição revelada.";
+    if(this->BeingShown()) throw std::runtime_error(errorMessage);
+
+    this->Flaged = true;
+}
+
+/// @brief Remove a bandeira da posição atual
+void FieldSquare::RemoveFlag() {
+    this->Flaged = false;
+}
+
 /// @brief Faz com que a posição atual passe a ser exibida para o jogador
 void FieldSquare::Reveal() {
     this->Shown = true;
@@ -71,6 +92,7 @@ void FieldSquare::Reveal() {
 FieldSquare::FieldSquare() {
     // Construtor (Campo minado inicializa invisível e sem bombas)
     this->Shown = false;
+    this->Flaged = false;
     this->BombsNearby = 0;
 }
 

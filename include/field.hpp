@@ -38,8 +38,12 @@ using Matrix = std::vector<std::vector<T>>;
 
 class FieldSquare {
     private:
+        // ---------------------/ Propriedades privadas /----------------------
+
         bool Shown; // Representa se o valor dessa posição é visto ou não pelo
                     // jogador
+        bool Flaged; // Representa se o jogador colocou uma bandeira na posição
+                     // atual ou não
         int BombsNearby; // Representa quantas bombas há ao redor dessa posição
                          // (-1 se for uma posição de bomba)
     public:
@@ -49,9 +53,15 @@ class FieldSquare {
 
         bool BeingShown();
         
+        bool isFlaged();
+
         void SetBombsNearby(const int bombsNearby);
         
         void PlaceBomb();
+
+        void PlaceFlag();
+
+        void RemoveFlag();
 
         void Reveal();
 
