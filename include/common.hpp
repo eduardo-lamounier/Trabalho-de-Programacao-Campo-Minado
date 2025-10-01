@@ -26,6 +26,9 @@ header: "../include/common.hpp"
 // Inclusões comentadas e marcadas com asterisco (*) são aquelas que não foram
 // reconhecidas (só existem do C++17 em diante)
 
+// Além disso, incluí aqui definições para tipos que vão ou podem ser bastante
+// utilizados durante o projeto (fim do arquivo)
+
 // >> Containers:
 #include <vector>
 #include <array>
@@ -88,3 +91,11 @@ header: "../include/common.hpp"
 #include <initializer_list>
 //* #include <filesystem>
 #include <regex>
+
+// >> TIPOS:
+namespace cmm {
+    using index = unsigned int;
+
+    template<typename T>
+    using matrix = std::vector<std::vector<T>>;
+}
