@@ -22,7 +22,7 @@ formato Doxygen acima do cabeçalho da função
 
 // ---------------------------------/ Field /----------------------------------
 
-Matrix<FieldSquare> Field::Data = {};
+cmm::matrix<FieldSquare> Field::Data = {};
 
 // ===========================< Métodos de classes >===========================
 
@@ -111,7 +111,7 @@ FieldSquare::FieldSquare() {
 /// @param col A coluna dessa cédula
 /// @return Uma referência à posição correspondente
 /// @note Uma linha ou coluna inválida lança uma exceção
-FieldSquare& Field::At(const index row, const index col) {
+FieldSquare& Field::At(const cmm::index row, const cmm::index col) {
     return Field::Data.at(row).at(col); // Função .at() lança uma exceção para
                                         // índice inválido
 }

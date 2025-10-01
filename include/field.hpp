@@ -26,14 +26,6 @@ leia a documentação escrita no arquivo .cpp
 #include "config.hpp" // Inclusão da classe com as configurações do campo
                       // minado
 
-// =================================< Tipos >==================================
-
-using index = unsigned int; // Esse tipo se refere a uma posição de array ou
-                            // matriz
-
-template<typename T>
-using Matrix = std::vector<std::vector<T>>;
-
 // ================================< Classes >=================================
 
 class FieldSquare {
@@ -72,7 +64,7 @@ class Field {
     private:
         // ---------------------/ Propriedades privadas /----------------------
 
-        static Matrix<FieldSquare> Data; // Armazena a matriz do campo minado
+        static cmm::matrix<FieldSquare> Data; // Armazena a matriz do campo minado
     
         // ------------------------/ Métodos privados /------------------------
         
@@ -80,7 +72,7 @@ class Field {
     public:
         // ------------------------/ Métodos públicos /------------------------
 
-        static FieldSquare& At(const index row, const index col);
+        static FieldSquare& At(const cmm::index row, const cmm::index col);
 
         static void Generate();
         
