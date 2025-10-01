@@ -58,7 +58,7 @@ bool FieldSquare::isFlaged() {
 void FieldSquare::SetBombsNearby(const int bombsNearby) {
     std::string errorMessage = "Valor invalido passado para o metodo: ";
     errorMessage += "void FieldSquare::SetBombsNearb(const int bombsNearby).\n";
-    if(bombsNearby > 8 || bombsNearby < 0) throw(errorMessage);
+    if(bombsNearby > 8 || bombsNearby < 0) throw std::runtime_error(errorMessage);
 
     this->BombsNearby = bombsNearby;
 }
@@ -91,7 +91,7 @@ void FieldSquare::RemoveFlag() {
 bool FieldSquare::Reveal() {
     std::string errorMessage = "Erro em FieldSquare::Reveal: Não é possível ";
     errorMessage += "revelar uma posição na qual há uma bandeira.";
-    if(this->Flaged) throw(errorMessage);
+    if(this->Flaged) throw std::runtime_error(errorMessage);
 
     this->Shown = true;
     return this->BombsNearby == -1; // Há uma bomba?
