@@ -85,8 +85,16 @@ void FieldSquare::RemoveFlag() {
 }
 
 /// @brief Faz com que a posição atual passe a ser exibida para o jogador
-void FieldSquare::Reveal() {
+/// @return Retorna se a posição revelada tinha ou não uma bomba
+/// @note i.e. retorna 'true' se o jogador tiver perdido ao tentar revelar esta
+///       posição, ou 'false' caso contrário
+bool FieldSquare::Reveal() {
+    std::string errorMessage = "Erro em FieldSquare::Reveal: Não é possível ";
+    errorMessage += "revelar uma posição na qual há uma bandeira.";
+    if(this->Flaged) throw(errorMessage);
+
     this->Shown = true;
+    return this->BombsNearby == -1; // Há uma bomba?
 }
 
 FieldSquare::FieldSquare() {

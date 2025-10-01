@@ -63,7 +63,7 @@ class FieldSquare {
 
         void RemoveFlag();
 
-        void Reveal();
+        bool Reveal();
 
         FieldSquare();
 };
