@@ -61,7 +61,7 @@ int GameConfig::Get(std::string property) {
     errorMessage += "int GameConfig::Get(std::string property). ";
     errorMessage += "Eh necessario passar uma string correspondente a alguma ";
     errorMessage += "propriedade existente na classe GameConfig.\n";
-    throw(errorMessage);
+    throw std::runtime_error(errorMessage);
 }
 
 /// @brief Faz a leitura das configurações escolhidas pelo usuário, e armazena
@@ -117,7 +117,7 @@ void GameConfig::InputSettings() {
 
         std::string errorMessage = "Valores inválidos passados para a função:";
         errorMessage = "lambda input em: void GameConfig::InputSettings()";
-        if(configs.size() != configNames.size()) throw(errorMessage);
+        if(configs.size() != configNames.size()) throw std::runtime_error(errorMessage);
 
         char confirmation = 'N';
 
