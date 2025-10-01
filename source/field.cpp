@@ -124,5 +124,20 @@ void Field::Generate() {
 
 /// @brief Exibe o campo minado para o jogador
 void Field::Display() {
-    // Imprime o campo minado
+// Exibição do campo minado - v1
+
+    for(auto& row : Field::Data) {
+        for(auto pos : row) {
+            // Para cada cédula do campo minado:
+            if(pos.BeingShown()) {
+                std::cout << pos.GetBombsNearby() << " ";
+            } else if(pos.isFlaged()) {
+                std::cout << "f ";
+            } else {
+                std::cout << "- ";
+            }
+        }
+        std::cout << "\n";
+    }
+    std::cout << std::endl;
 }
