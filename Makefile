@@ -1,6 +1,27 @@
+# 
+# Criado em: 29/08/2025 por Eduardo
+# Responsabilidade de: Eduardo
+# Finalizado em: --/--/2025
+#
+# # Visão geral:
+# Programa usado para facilitar a compilação dos executáveis do projeto, assim
+# como serve para organizar a execução de diferentes executáveis (em /bin)
+#
+# # Uso:
+# 	* Use o comando 'make app' para compilar a aplicação principal
+# 	* Use o comando 'make all' para compilar todos os arquivos fontes (na pasta
+# /source)
+# 	* Use o comando 'make featname-test' para compilar o programa que testa a
+# feature 'featname' (é o nome de algum header da pasta /include)
+# 	* Use o comando 'make run-app' para rodar a aplicação 
+# 	* Use o comando 'make run-featname-test' (onde 'featname' é o nome da
+# feature, algum header da pasta /include) para rodar o programa de teste
+# 
+# <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 # Compilador e flags:
 CC = g++
-FLAGS = -Wall -Iinclude
+FLAGS = -Wall -Iinclude # Sujeito a adições
 
 # Nomes dos executáveis:
 APLICACAO = bin/app.exe
@@ -8,7 +29,7 @@ TESTE_CONFIG = bin/configTest.exe
 
 # Fontes para cada executável:
 APP_SOURCES = $(wildcard source/*.cpp) # Todos os arquivos .cpp em source
-TEST_CONFIG_SOURCES = testing/configTest.cpp source/config.cpp
+TEST_CONFIG_SOURCES = tests/configTest.cpp source/config.cpp
 
 # Target padrão: Compila tudo:
 all: app config-test
