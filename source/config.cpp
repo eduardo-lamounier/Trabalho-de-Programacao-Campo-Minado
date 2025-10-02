@@ -126,7 +126,7 @@ void GameConfig::InputSettings() {
         const auto confirm = [&confirmation, &configs, &configNames] () {
             std::cout << "Confirmar[S/N]?\n";
 
-            for(int i = 0; i < configs.size(); i++) {
+            for(cmm::index i = 0; i < configs.size(); i++) {
                 // Imprime o valor cada configuração inserida:
                 std::cout << "|" << configNames[i] << " = ";
                 std::cout << *configs[i] << "|\n";
