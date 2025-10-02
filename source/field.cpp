@@ -30,19 +30,20 @@ cmm::matrix<FieldSquare> Field::Data = {};
 
 /// @brief Acessa a quantidade de bombas ao redor da posição atual do campo
 ///        minado
-/// @return O valor inteiro correspondente
+/// @note Retorna -1 se há uma bomba NA posição atual
+/// @return A quantidade de bombas ao redor da posição atual
 int FieldSquare::GetBombsNearby(){
     return this->BombsNearby;
 }
 
 /// @brief Verifica se a posição atual está sendo exibida para o jogador
-/// @return O valor booleano correspondente
+/// @return Se a posição está ou não sendo exibida para o jogador [true/false]
 bool FieldSquare::BeingShown() {
     return this->Shown;
 }
 
 /// @brief Verifica se a posição atual tem uma bandeira
-/// @return O valor booleano correspondente
+/// @return Se a posição atual tem ou não uma bandeira [true/false]
 bool FieldSquare::isFlaged() {
     return this->Flaged;
 }
@@ -51,13 +52,13 @@ bool FieldSquare::isFlaged() {
 ///        por um parâmetro inválido)
 /// @param bombsNearby O valor que vai ser atribuído à quantidade de bombas
 ///                    ao redor da posição atual
-/// @note Não é possível existir mais de 8 bombas ao redor
+/// @note Não é possível existir mais de 8 bombas ao redor, nem menos de 0
 /// @note Por mais que -1 represente a presença de uma bomba na posição, a
 ///       função que deve ser utilizada para colocar a bomba é:
-///       void FieldSquare::PlaceBomb().
+///       'void FieldSquare::PlaceBomb()'.
 void FieldSquare::SetBombsNearby(const int bombsNearby) {
     std::string errorMessage = "Valor invalido passado para o metodo: ";
-    errorMessage += "void FieldSquare::SetBombsNearb(const int bombsNearby).\n";
+    errorMessage += "void FieldSquare::SetBombsNearb(const int bombsNearby).";
     if(bombsNearby > 8 || bombsNearby < 0) throw std::runtime_error(errorMessage);
 
     this->BombsNearby = bombsNearby;
@@ -70,7 +71,7 @@ void FieldSquare::PlaceBomb() {
 }
 
 /// @brief Coloca uma bandeira na posição atual
-/// @note Não funciona se a posição atual tiver sido revelada
+/// @note Não funciona se a posição atual tiver sido revelada (exceção)
 void FieldSquare::PlaceFlag() {
     std::string errorMessage = "Não é possível colocar uma bandeira em uma";
     errorMessage += " posição revelada.";
@@ -89,8 +90,8 @@ void FieldSquare::RemoveFlag() {
 /// @note i.e. retorna 'true' se o jogador tiver perdido ao tentar revelar esta
 ///       posição, ou 'false' caso contrário
 bool FieldSquare::Reveal() {
-    std::string errorMessage = "Erro em FieldSquare::Reveal: Não é possível ";
-    errorMessage += "revelar uma posição na qual há uma bandeira.";
+    std::string errorMessage = "Não é possível revelar uma posição na qual há";
+    errorMessage += " uma bandeira. Retire-a caso queira revelar a posição.";
     if(this->Flaged) throw std::runtime_error(errorMessage);
 
     this->Shown = true;
