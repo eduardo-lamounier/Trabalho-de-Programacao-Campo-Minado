@@ -24,12 +24,19 @@ formato Doxygen acima do cabeçalho da função
 /// @return Pontuação ganha pelo jogador nesse jogo
 int play(){
     int points = 0;
-    std::cout << "Jogo em implementacao, volte depois!\n";
-    std::cout << "Pontuação ganha durante esse jogo: " << points << ".\n\n";
 
-    std::cout << "-- pressione 'Enter' para voltar ao menu.\n";
-    std::cout << "> " << std::endl;
-    std::cin; // Espera o usuário pressionar Enter para finalizar o jogo
+    std::cout << "Jogo em implementacao, volte depois!\n";
+    
+    std::cout << "Pontuacao ganha durante esse jogo: " << points << " Pontos.\n\n";
+    std::cout << "->> pressione 'Enter' para voltar ao menu." << std::endl;
+
+    // Ignora todo o input à esquerda que restou no buffer (ignora todos os
+    // caracteres à esquerda até chegar na quebra de linha '\n'):
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    std::string buff; // string temporária para armazenar a próx leitura
+    std::getline(std::cin, buff); // Espera o usuário pressionar
+                                  // Enter para finalizar o jogo
 
     return points;
 }
