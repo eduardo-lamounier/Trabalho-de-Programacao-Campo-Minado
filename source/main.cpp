@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
     while(!menu(totalPoints)); // Pede pelas primeiras entradas do usuário
                                // enquanto ele não desejar finalizar o programa
 
-    std::cout << "Pontuacao total ganha durante tempo de execucao:\n";
+    std::cout << "Pontuacao total ganha durante tempo de execucao: ";
     std::cout << totalPoints << " Pontos.";
     std::cout << "\n\nMuito obrigado por jogar!!" << std::endl;
 
@@ -43,15 +43,15 @@ int main(int argc, char *argv[]) {
 ///               pontuações ganhas nos jogos vão ser somadas
 /// @return Se o programa deve finalizar ou não
 bool menu(int& points) {
-// Primeira versão do menu
+// Primeira versão do menu - v1
     char opcao;
 
-    std::cout << "\nBem-vindo ao Campo Minado\nJogo feito por: Eduardo, Heitor e Miguel\n\n";
-    std::cout << "Por favor, selecione uma das seguintes opções:\n";
+    std::cout << "\nBem-vindo ao Campo Minado!\nJogo feito por: Eduardo, Heitor e Miguel.\n\n";
+    std::cout << "Por favor, selecione uma das seguintes opcoes:\n";
     std::cout << "1.Jogar\n2.Configuracoes\n3.Sair\n\n";
 
     while(true) {
-        std::cout << "> " << std::endl;
+        std::cout << "> " << std::flush;
         std::cin >> opcao;
 
         switch (opcao) {
@@ -68,7 +68,7 @@ bool menu(int& points) {
                 return true; // Usuário pretende finalizar o programa
             default:
                 // Usuário é um imbecil (input inválido):
-                std::cout << "Digite uma opção válida: [1-3]\n";
+                std::cout << "Por favor, digite uma opcao valida[1-3].\n";
                 break;
         }
     }
