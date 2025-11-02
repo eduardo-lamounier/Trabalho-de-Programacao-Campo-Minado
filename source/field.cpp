@@ -44,7 +44,7 @@ bool FieldSquare::BeingShown() {
 
 /// @brief Verifica se a posição atual tem uma bandeira
 /// @return Se a posição atual tem ou não uma bandeira [true/false]
-bool FieldSquare::isFlaged() {
+bool FieldSquare::hasFlag() {
     return this->Flaged;
 }
 
@@ -121,24 +121,68 @@ FieldSquare& Field::At(const cmm::index row, const cmm::index col) {
 /// @note As configurações são baseadas na classe: GameConfig
 void Field::Generate() {
     // Gera o mapa do campo minado
+
+    std::mt19937 gen(std::time(nullptr));   // mt19937 é o gerador de números pseudo-aleatórios
+                                            // A seed é o time
+
+    std::uniform_int_distribution<int> dist(0, 9); // *No lugar do 9 colocar o número de linhas ou de colunas.
+                                                    // *É escolhido pelo que tem o maior número.
+
+    int Bombs;
+
+    for(int i = 0; i < Bombs; i++) // *Saber a quantidade de bombas que terá;
+    {
+        int RowRandow = dist(gen); // Índice pseudo-aleatório na linha;
+        int ColRandow = dist(gen); // Índice pseudo-aleatório na coluna;
+
+        if(At(RowRandow, ColRandow).GetBombsNearby() != -1) // *Adicionar mais uma condição
+        {                                                 // *Verificar se o quadrado é reservado para não ter bombas 
+            At(RowRandow, ColRandow).PlaceBomb();
+        }
+
+        else
+            i--;
+         
+    }
+
+    for(auto row : Data)
+    {
+        for(auto square : row)
+        {
+            if(square.GetBombsNearby() != -1)
+            {
+                // *Descobrir como examinar as casas adjacentes
+            }
+        }
+    }
 }
 
 /// @brief Exibe o campo minado para o jogador
-void Field::Display() {
-// Exibição do campo minado - v1
+void Field::Display() 
+{
+    for(auto row : Data) 
+    {
+        for(auto square : row)
+        {
+            if(square.hasFlag())
+                std::cout << " P ";
+            
+            else
+            {
+                if(!square.BeingShown())
+                    std::cout << " ~ ";
 
-    for(auto& row : Field::Data) {
-        for(auto pos : row) {
-            // Para cada cédula do campo minado:
-            if(pos.BeingShown()) {
-                std::cout << pos.GetBombsNearby() << " ";
-            } else if(pos.isFlaged()) {
-                std::cout << "f ";
-            } else {
-                std::cout << "- ";
+                else 
+                {
+                    if(square.GetBombsNearby() == -1)
+                        std::cout << " X ";
+                    
+                    else
+                        std::cout << square.GetBombsNearby();
+                }
             }
         }
-        std::cout << "\n";
+
+        std::cout << std::endl;
     }
-    std::cout << std::endl;
 }
