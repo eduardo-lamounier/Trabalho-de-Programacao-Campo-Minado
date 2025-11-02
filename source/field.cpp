@@ -119,40 +119,67 @@ FieldSquare& Field::At(const cmm::index row, const cmm::index col) {
 
 /// @brief Gera o mapa do campo minado conforme as configurações do jogo
 /// @note As configurações são baseadas na classe: GameConfig
-void Field::Generate() {
-    // Gera o mapa do campo minado
+void Field::Generate() 
+{ // Gera o mapa do campo minado
+
+    //Variáveis pegas do GameConfig:
+    int width = GameConfig::Get("WIDTH");   
+    int height = GameConfig::Get("HEIGHT"); 
+    int RegionNoBomb = GameConfig::Get("NOBOMBSREGION");
+    int bombs = GameConfig::Get("TOTALBOMBS"); 
+
+//---------------------- Colocando bombas em lugares "aleatórios" --------------------------------
 
     std::mt19937 gen(std::time(nullptr));   // mt19937 é o gerador de números pseudo-aleatórios
                                             // A seed é o time
 
-    std::uniform_int_distribution<int> dist(0, 9); // *No lugar do 9 colocar o número de linhas ou de colunas.
-                                                    // *É escolhido pelo que tem o maior número.
+    std::uniform_int_distribution<int> dist(0, 100); // Distribui uniformemente entre os números.
 
-    int Bombs;
-
-    for(int i = 0; i < Bombs; i++) // *Saber a quantidade de bombas que terá;
+    for(int i = 0; i < bombs; i++) 
     {
         int RowRandow = dist(gen); // Índice pseudo-aleatório na linha;
         int ColRandow = dist(gen); // Índice pseudo-aleatório na coluna;
-
-        if(At(RowRandow, ColRandow).GetBombsNearby() != -1) // *Adicionar mais uma condição
-        {                                                 // *Verificar se o quadrado é reservado para não ter bombas 
-            At(RowRandow, ColRandow).PlaceBomb();
-        }
-
+        
+        if(RowRandow > height || ColRandow > width) // Verificando se a linha e coluna gerados 
+            i--;                                    // são maiores do que devia; 
+        
         else
-            i--;
-         
+        {   
+            if(At(RowRandow, ColRandow).GetBombsNearby() != -1) // *Adicionar mais uma condição
+                                                                 // *Verificar se o quadrado é reservado para não ter bombas 
+                At(RowRandow, ColRandow).PlaceBomb(); 
+            
+            else
+                i--;
+        } 
     }
 
-    for(auto row : Data)
+
+// ------------------ Colocando o número de bombas próximas dos quadrados nos quadrados --------------------    
+    int bombsNear = 0;
+
+    for(int row = 0; row < height; row++)
     {
-        for(auto square : row)
+        for(int col = 0; col < width; col++)
         {
-            if(square.GetBombsNearby() != -1)
+            if(At(row, col).GetBombsNearby() != -1) // Confere cada cédula do campo se não é bomba;
             {
-                // *Descobrir como examinar as casas adjacentes
+                for(int k = row - 1; k <= row + 1; k++)
+                {
+                    for(int l = col - 1; l <= col + 1; l++) // Vai indo nos quadrados adjacentes
+                    {
+                        if(row < 0 || row > height + 1 || col < 0 || col > width + 1) 
+                            continue; // Se o quadrado se encontra fora do campo, ignora;
+                        
+                        if(At(k, l).GetBombsNearby() == -1)
+                            At(row, col).SetBombsNearby(bombsNear++); 
+                            // Verifica se os quadrados adjacentes são uma bomba
+                            // e informa à cédula quantas bombas há ao redor;  
+                    }
+                }
             }
+
+            bombsNear = 0;
         }
     }
 }
@@ -165,12 +192,12 @@ void Field::Display()
         for(auto square : row)
         {
             if(square.hasFlag())
-                std::cout << " P ";
+                std::cout << "P ";
             
             else
             {
                 if(!square.BeingShown())
-                    std::cout << " ~ ";
+                    std::cout << "~ ";
 
                 else 
                 {

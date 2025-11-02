@@ -45,7 +45,7 @@ class FieldSquare {
 
         bool BeingShown();
         
-        bool isFlaged();
+        bool hasFlag();
 
         void SetBombsNearby(const int bombsNearby);
         
