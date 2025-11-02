@@ -202,10 +202,10 @@ void Field::Display()
                 else 
                 {
                     if(square.GetBombsNearby() == -1)
-                        std::cout << " X ";
+                        std::cout << "X ";
                     
                     else
-                        std::cout << square.GetBombsNearby();
+                        std::cout << square.GetBombsNearby() << " ";
                 }
             }
         }
