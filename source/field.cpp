@@ -126,38 +126,43 @@ void Field::Generate()
     int width = GameConfig::Get("WIDTH");   
     int height = GameConfig::Get("HEIGHT"); 
     int RegionNoBomb = GameConfig::Get("NOBOMBSREGION");
-    int bombs = GameConfig::Get("TOTALBOMBS"); 
+    int bombs = GameConfig::Get("TOTALBOMBS");
+
+    // Precenhendo a matriz
+    std::vector<FieldSquare> row{};
+
+    row = std::vector<FieldSquare>(width, FieldSquare());
+    Data = cmm::matrix<FieldSquare>(height, row);
+    
 
 //---------------------- Colocando bombas em lugares "aleatórios" --------------------------------
 
     std::mt19937 gen(std::time(nullptr));   // mt19937 é o gerador de números pseudo-aleatórios
                                             // A seed é o time
+    
+    // Distribui uniformemente entre os números dejesados.
+    std::uniform_int_distribution<int> dist_row(0, height - 1); //Números gerados para a linha;
+    std::uniform_int_distribution<int> dist_col(0, width - 1);  //Números gerado para a coluna;
 
-    std::uniform_int_distribution<int> dist(0, 100); // Distribui uniformemente entre os números.
-
-    for(int i = 0; i < bombs; i++) 
+    while(bombs > 0) 
     {
-        int RowRandow = dist(gen); // Índice pseudo-aleatório na linha;
-        int ColRandow = dist(gen); // Índice pseudo-aleatório na coluna;
+        int RowRandow = dist_row(gen);  // Índice pseudo-aleatório na linha;
+        int ColRandow = dist_col(gen);  // Índice pseudo-aleatório na coluna; 
         
-        if(RowRandow > height || ColRandow > width) // Verificando se a linha e coluna gerados 
-            i--;                                    // são maiores do que devia; 
-        
-        else
-        {   
+          
             if(At(RowRandow, ColRandow).GetBombsNearby() != -1) // *Adicionar mais uma condição
-                                                                 // *Verificar se o quadrado é reservado para não ter bombas 
+            {                                                   // *Verificar se o quadrado é reservado para não ter bombas 
                 At(RowRandow, ColRandow).PlaceBomb(); 
-            
-            else
-                i--;
-        } 
+
+                bombs--; 
+            }
     }
 
 
 // ------------------ Colocando o número de bombas próximas dos quadrados nos quadrados --------------------    
     int bombsNear = 0;
 
+    //---- *Descobri como melhorar essa parte, para ficar menos confuso. ----
     for(int row = 0; row < height; row++)
     {
         for(int col = 0; col < width; col++)
@@ -168,13 +173,17 @@ void Field::Generate()
                 {
                     for(int l = col - 1; l <= col + 1; l++) // Vai indo nos quadrados adjacentes
                     {
-                        if(row < 0 || row > height + 1 || col < 0 || col > width + 1) 
+                        if(k < 0 || k > height - 1 || l < 0 || l > width - 1) 
                             continue; // Se o quadrado se encontra fora do campo, ignora;
                         
                         if(At(k, l).GetBombsNearby() == -1)
-                            At(row, col).SetBombsNearby(bombsNear++); 
+                        {
+                            bombsNear++;
+
+                            At(row, col).SetBombsNearby(bombsNear); 
                             // Verifica se os quadrados adjacentes são uma bomba
-                            // e informa à cédula quantas bombas há ao redor;  
+                            // e informa à cédula quantas bombas há ao redor; 
+                        }
                     }
                 }
             }
@@ -189,24 +198,24 @@ void Field::Display()
 {
     for(auto row : Data) 
     {
-        for(auto square : row)
+        for(auto square : row) // Vai indo de cúcula em cécula do campo;
         {
-            if(square.hasFlag())
-                std::cout << "P ";
+            if(square.hasFlag()) // Verifica se tem uma bandeira;
+                std::cout << "P  ";
             
             else
             {
-                if(!square.BeingShown())
-                    std::cout << "~ ";
+                //if(!square.BeingShown()) // Verifica se não está sendo mostrado;
+                //    std::cout << "~  ";
 
-                else 
-                {
-                    if(square.GetBombsNearby() == -1)
-                        std::cout << "X ";
+                //else 
+                //{
+                    if(square.GetBombsNearby() == -1) // Verifica se é uma bomba;
+                        std::cout << "X  ";
                     
                     else
-                        std::cout << square.GetBombsNearby() << " ";
-                }
+                        std::cout << square.GetBombsNearby() << "  ";
+                //}
             }
         }
 
