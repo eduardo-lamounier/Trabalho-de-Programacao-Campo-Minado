@@ -5,7 +5,7 @@ Responsabilidade de: Eduardo
 Finalizado em: --/--/2025
 
 # Visão geral:
-Um header com o protótipo das funções do jogo: comandos do jogador, cálculo da 
+Um header com o protótipo das funções do jogo: comandos do jogador, cálculo da
 pontuação etc
 
 # Uso:
@@ -23,8 +23,23 @@ leia a documentação escrita no arquivo .cpp
 
 #include "common.hpp" // Inclusão de todas as bibliotecas padrão de C++
 
+#include "field.hpp" // Inclusão do header de geração do campo minado
+
 // ================================< Funções >=================================
 
 int play();
 
-// Outras funções...
+// ================================< Classes >=================================
+
+class Commands {
+private:
+    Commands() = delete;
+public:
+    static void List();
+
+    static bool Dig(cmm::index row, cmm::index col);
+
+    static void ToggleFlag(cmm::index row, cmm::index col);
+
+    static void ClearConsole();
+};
