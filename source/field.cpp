@@ -98,14 +98,17 @@ bool FieldSquare::Reveal() {
     return this->BombsNearby == -1; // Há uma bomba?
 }
 
-bool FieldSquare::NoBombRegion()
+/// @brief Verifica se o quadrado está sendo reservado
+/// @return Se o quadrado está reservado [true/false]
+bool FieldSquare::ReservedSquare()
 {
-    return this->NoBomb;
+    return this->Reserved;
 }
 
+/// @brief Reserva um quadrado para uma área
 void FieldSquare::ReserveSquare()
 {
-    this->NoBomb = true;
+    this->Reserved = true;
 }
 
 FieldSquare::FieldSquare() {
@@ -127,7 +130,7 @@ FieldSquare& Field::At(const cmm::index row, const cmm::index col) {
                                         // índice inválido
 }
 
-void Field::ReservedSquare()
+void Field::RegionNoBomb()
 {
 //-------------- dados pegos do GameConfig -----------------
     int RegionNoBomb = GameConfig::Get("NOBOMBSREGION"); // Número de quadrados reservados
@@ -169,7 +172,7 @@ void Field::Generate()
     Data = cmm::matrix<FieldSquare>(height, row);
 
     // Reservando a área:
-    Field::ReservedSquare(); 
+    Field::RegionNoBomb(); 
 
 //---------------------- Colocando bombas em lugares "aleatórios" --------------------------------
 
@@ -186,7 +189,7 @@ void Field::Generate()
         int ColRandow = dist_col(gen);  // Índice pseudo-aleatório na coluna; 
         
           
-            if(At(RowRandow, ColRandow).GetBombsNearby() != -1 && !At(RowRandow, ColRandow).NoBombRegion()) 
+            if(At(RowRandow, ColRandow).GetBombsNearby() != -1 && !At(RowRandow, ColRandow).ReservedSquare()) 
             {                                                  
                 At(RowRandow, ColRandow).PlaceBomb(); 
 
