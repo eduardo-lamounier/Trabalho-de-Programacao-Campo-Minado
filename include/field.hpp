@@ -29,60 +29,62 @@ leia a documentação escrita no arquivo .cpp
 // ================================< Classes >=================================
 
 class FieldSquare {
-    private:
-        // ---------------------/ Propriedades privadas /----------------------
+private:
+    // ---------------------/ Propriedades privadas /----------------------
 
-        bool Shown; // Representa se o valor dessa posição é visto ou não pelo
-                    // jogador
-        bool Flaged; // Representa se o jogador colocou uma bandeira na posição
-                     // atual ou não
-        bool Reserved;  // Representa se o quadrado está sendo reservado para uma
-                        // área que não poderá ter bombas
-        int BombsNearby; // Representa quantas bombas há ao redor dessa posição
-                         // (-1 se for uma posição de bomba)
-    public:
-        // ------------------------/ Métodos públicos /------------------------
-        
-        int GetBombsNearby();
+    bool Shown; // Representa se o valor dessa posição é visto ou não pelo
+    // jogador
+    bool Flaged; // Representa se o jogador colocou uma bandeira na posição
+    // atual ou não
+    bool Reserved;  // Representa se o quadrado está sendo reservado para uma
+    // área que não poderá ter bombas
+    int BombsNearby; // Representa quantas bombas há ao redor dessa posição
+    // (-1 se for uma posição de bomba)
+public:
+    // ------------------------/ Métodos públicos /------------------------
 
-        bool BeingShown();
-        
-        bool hasFlag();
+    int GetBombsNearby();
 
-        void SetBombsNearby(const int bombsNearby);
-        
-        void PlaceBomb();
+    bool BeingShown();
 
-        void PlaceFlag();
+    bool hasFlag();
 
-        void RemoveFlag();
+    void SetBombsNearby(const int bombsNearby);
 
-        bool Reveal();
+    void PlaceBomb();
 
-        bool ReservedSquare();
+    void PlaceFlag();
 
-        void ReserveSquare();
+    void RemoveFlag();
 
-        FieldSquare();
+    bool Reveal();
+
+    bool ReservedSquare();
+
+    void ReserveSquare();
+
+    FieldSquare();
 };
 
 class Field {
-    private:
-        // ---------------------/ Propriedades privadas /----------------------
+private:
+    // ---------------------/ Propriedades privadas /----------------------
 
-        static cmm::matrix<FieldSquare> Data; // Armazena a matriz do campo minado
-    
-        // ------------------------/ Métodos privados /------------------------
-        
-        /*Construtor privado (Classe estática) */ Field();
-    public:
-        // ------------------------/ Métodos públicos /------------------------
+    static cmm::matrix<FieldSquare> Data; // Armazena a matriz do campo minado
 
-        static FieldSquare& At(const cmm::index row, const cmm::index col);
+    // ------------------------/ Métodos privados /------------------------
 
-        static void Generate();
-        
-        static void Display();
+    /*Construtor privado (Classe estática) */ Field();
 
-        static void RegionNoBomb();
+    static void ReserveNoBombRegion();
+public:
+    // ------------------------/ Métodos públicos /------------------------
+
+    static FieldSquare &At(const cmm::index row, const cmm::index col);
+
+    static void Generate();
+
+    static void Display();
+
+    static void RevealAll();
 };
