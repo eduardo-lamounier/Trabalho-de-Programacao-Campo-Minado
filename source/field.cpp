@@ -98,6 +98,16 @@ bool FieldSquare::Reveal() {
     return this->BombsNearby == -1; // Há uma bomba?
 }
 
+bool FieldSquare::NoBombRegion()
+{
+    return this->NoBomb;
+}
+
+void FieldSquare::ReserveSquare()
+{
+    this->NoBomb = true;
+}
+
 FieldSquare::FieldSquare() {
     // Construtor (Campo minado inicializa invisível e sem bombas)
     this->Shown = false;
@@ -117,6 +127,31 @@ FieldSquare& Field::At(const cmm::index row, const cmm::index col) {
                                         // índice inválido
 }
 
+void Field::ReservedSquare()
+{
+//-------------- dados pegos do GameConfig -----------------
+    int RegionNoBomb = GameConfig::Get("NOBOMBSREGION"); // Número de quadrados reservados
+    int width = GameConfig::Get("WIDTH"); // Quantidade de colunas
+    int height = GameConfig::Get("HEIGHT"); // Quantidade de linhas
+
+//------------- Atribuindo as variáveis os seus valores ----
+    int side = sqrt(RegionNoBomb); // side: Lado da região quadrada
+
+    //thick: borda, área que não será reservado
+    int thick_width = (width - side) / 2; 
+    int thick_height = (height - side) / 2;
+
+
+//------------- Reservando quadrados ------------------------    
+    for(int i = thick_height; i < thick_height + side; i++)
+    {
+        for(int j = thick_width; j < thick_width + side; j++)
+        {
+            Field::At(i, j).ReserveSquare();
+        }
+    }
+}
+
 /// @brief Gera o mapa do campo minado conforme as configurações do jogo
 /// @note As configurações são baseadas na classe: GameConfig
 void Field::Generate() 
@@ -125,7 +160,6 @@ void Field::Generate()
     //Variáveis pegas do GameConfig:
     int width = GameConfig::Get("WIDTH");   
     int height = GameConfig::Get("HEIGHT"); 
-    int RegionNoBomb = GameConfig::Get("NOBOMBSREGION");
     int bombs = GameConfig::Get("TOTALBOMBS");
 
     // Precenhendo a matriz
@@ -133,7 +167,9 @@ void Field::Generate()
 
     row = std::vector<FieldSquare>(width, FieldSquare());
     Data = cmm::matrix<FieldSquare>(height, row);
-    
+
+    // Reservando a área:
+    Field::ReservedSquare(); 
 
 //---------------------- Colocando bombas em lugares "aleatórios" --------------------------------
 
@@ -150,8 +186,8 @@ void Field::Generate()
         int ColRandow = dist_col(gen);  // Índice pseudo-aleatório na coluna; 
         
           
-            if(At(RowRandow, ColRandow).GetBombsNearby() != -1) // *Adicionar mais uma condição
-            {                                                   // *Verificar se o quadrado é reservado para não ter bombas 
+            if(At(RowRandow, ColRandow).GetBombsNearby() != -1 && !At(RowRandow, ColRandow).NoBombRegion()) 
+            {                                                  
                 At(RowRandow, ColRandow).PlaceBomb(); 
 
                 bombs--; 
@@ -205,17 +241,17 @@ void Field::Display()
             
             else
             {
-                //if(!square.BeingShown()) // Verifica se não está sendo mostrado;
-                //    std::cout << "~  ";
+                if(!square.BeingShown()) // Verifica se não está sendo mostrado;
+                    std::cout << "~  ";
 
-                //else 
-                //{
+                else 
+                {
                     if(square.GetBombsNearby() == -1) // Verifica se é uma bomba;
                         std::cout << "X  ";
                     
                     else
                         std::cout << square.GetBombsNearby() << "  ";
-                //}
+                }
             }
         }
 

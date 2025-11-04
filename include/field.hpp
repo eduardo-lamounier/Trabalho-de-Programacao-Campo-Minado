@@ -36,6 +36,8 @@ class FieldSquare {
                     // jogador
         bool Flaged; // Representa se o jogador colocou uma bandeira na posição
                      // atual ou não
+        bool NoBomb; // Representa se o quadrado está sendo reservado para uma
+                     // que não poderá ter bombas
         int BombsNearby; // Representa quantas bombas há ao redor dessa posição
                          // (-1 se for uma posição de bomba)
     public:
@@ -57,6 +59,10 @@ class FieldSquare {
 
         bool Reveal();
 
+        bool NoBombRegion();
+
+        void ReserveSquare();
+
         FieldSquare();
 };
 
@@ -77,4 +83,6 @@ class Field {
         static void Generate();
         
         static void Display();
+
+        static void ReservedSquare();
 };
