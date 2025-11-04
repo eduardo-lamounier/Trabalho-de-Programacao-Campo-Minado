@@ -228,7 +228,17 @@ void Field::RevealAll()
     }
 }
 
+/// @brief Checa se todas as posições sem bomba do campo minado foram reveladas
+/// @return Retorna [true] se tiverem sido reveladas, [false] caso contrário
+/// @note Se o retorno for verdadeiro [true], quer dizer que o jogador ganhou
+bool Field::IsRevealed()
+{
+    // implementação
+}
+
 /// @brief Exibe o campo minado para o jogador
+/// @todo Colocar uma numeração nas linhas e colunas, e se quiser POSTERIORMENTE,
+///       pode colocar letras ao invés de números em alguma das duas.
 void Field::Display()
 {
     for (auto row : Data)

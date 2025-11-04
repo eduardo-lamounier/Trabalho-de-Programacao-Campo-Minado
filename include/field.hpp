@@ -87,4 +87,6 @@ public:
     static void Display();
 
     static void RevealAll();
+
+    static bool IsRevealed();
 };
