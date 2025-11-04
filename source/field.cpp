@@ -76,16 +76,12 @@ void FieldSquare::PlaceFlag() {
 void FieldSquare::RemoveFlag() { this->Flaged = false; }
 
 /// @brief Faz com que a posição atual passe a ser exibida para o jogador
-/// @return Retorna se a posição revelada tinha ou não uma bomba
-/// @note i.e. retorna 'true' se o jogador tiver perdido ao tentar revelar esta
-///       posição, ou 'false' caso contrário
-bool FieldSquare::Reveal() {
+void FieldSquare::Reveal() {
     std::string errorMessage = "Não é possível revelar uma posição na qual há";
     errorMessage += " uma bandeira. Retire-a caso queira revelar a posição.";
     if (this->Flaged) throw std::runtime_error(errorMessage);
 
     this->Shown = true;
-    return this->BombsNearby == -1; // Há uma bomba?
 }
 
 /// @brief Verifica se o quadrado está sendo reservado
@@ -222,8 +218,7 @@ void Field::RevealAll()
     {
         for (auto &square : row)
         {
-            // retorno é ignorado
-            bool temp = square.Reveal();
+            square.Reveal();
         }
     }
 }

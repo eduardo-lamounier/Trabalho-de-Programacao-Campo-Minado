@@ -57,7 +57,7 @@ public:
 
     void RemoveFlag();
 
-    bool Reveal();
+    void Reveal();
 
     bool ReservedSquare();
 
