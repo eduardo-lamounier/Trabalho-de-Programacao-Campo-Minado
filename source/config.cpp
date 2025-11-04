@@ -77,16 +77,16 @@ void GameConfig::InputSettings() {
         /// @param min O valor mínimo que essas configurações podem assumir
         /// @param max O valor máximo que essas configurações podem assumir
     constexpr auto validation = [] (std::vector<int *> configs, const int min,
-        const int max) {
+        int max) {
+            if (min > max) max = min;
 
             /// @brief Verifica se as configurações são válidas depois de repetir
             ///        o input
             /// @return Retorna se todas as configurações são válidas ou não
             const auto validate = [&configs, min, max] () {
                 // Checa se alguma das configurações são inválidas:
-                for (auto config : configs) {
+                for (auto config : configs)
                     if (*config < min || *config > max) return false;
-                }
 
                 // Se chegou até aqui, todas as configurações são válidas
                 return true;
