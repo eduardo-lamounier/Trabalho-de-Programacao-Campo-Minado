@@ -31,7 +31,7 @@ TESTE_CAMPO = bin/fieldTest.exe
 # Fontes para cada executável:
 APP_SOURCES = $(wildcard source/*.cpp) # Todos os arquivos .cpp em source
 TEST_CONFIG_SOURCES = tests/configTest.cpp source/config.cpp
-TEST_CAMPO_SOURCES = tests/fieldTest.cpp source/field.cpp
+TEST_CAMPO_SOURCES = tests/fieldTest.cpp source/field.cpp source/config.cpp
 
 # Target padrão: Compila tudo:
 all: app config-test
