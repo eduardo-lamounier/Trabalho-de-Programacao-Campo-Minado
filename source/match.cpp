@@ -22,11 +22,55 @@ formato Doxygen acima do cabeçalho da função
 
 /// @brief Inicia um jogo para o usuário, e calcula a pontuação no fim
 /// @return Pontuação ganha pelo jogador nesse jogo
-int play(){
+int play() {
     int points = 0;
 
-    std::cout << "Jogo em implementacao, volte depois!\n";
-    
+    Field::Generate();
+    while (true) {
+        // ^^^^ TODO: Tem que ser uma função para ver se todas as posições sem
+        //      bombas foram reveladas ou não (continua enquanto não tiverem sido)
+        Field::Display();
+
+        std::string command;
+        std::cout << "> ";
+        std::cin >> command;
+
+        if (command == "exit") break;
+        if (command == "help") {
+            Commands::List();
+
+            std::cout << "->> pressione 'Enter' para voltar continuar o jogo." << std::endl;
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::string buff;
+            std::getline(std::cin, buff);
+            continue;
+        }
+        if (command == "clear") {
+            Commands::ClearConsole();
+            continue;
+        }
+        if (command == "dig") {
+            cmm::index row, col;
+            std::cin >> row >> col;
+
+            if (!Commands::Dig(row, col)) break;
+            continue;
+        }
+        if (command == "flag") {
+            cmm::index row, col;
+            std::cin >> row >> col;
+
+            Commands::ToggleFlag(row, col);
+            continue;
+        }
+
+        std::cout << "Comando invalido. Use o comando 'help' para ver os comandos existentes.\n";
+    }
+
+    Commands::ClearConsole();
+    Field::RevealAll();
+    Field::Display();
+
     std::cout << "Pontuacao ganha durante esse jogo: " << points << " Pontos.\n\n";
     std::cout << "->> pressione 'Enter' para voltar ao menu." << std::endl;
 
