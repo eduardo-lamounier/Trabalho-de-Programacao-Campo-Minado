@@ -4,7 +4,7 @@ Criado por Eduardo
 Data de criação: 25/09/2025
 Finalizado em: --/--/2025
 
-Arquivo de teste para o header field.hpp, tem como objetivo testar as funções 
+Arquivo de teste para o header field.hpp, tem como objetivo testar as funções
 e métodos (que são implementados em config.cpp)
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -18,9 +18,14 @@ e métodos (que são implementados em config.cpp)
 
 int main(int argc, char *argv[])
 {
-    
+
+    GameConfig::InputSettings();
     Field::Generate();
     Field::Display();
+    Field::RevealAll();
+    std::cout << "\n";
+    Field::Display();
+    std::cout << std::endl;
 
     return 0;
 }
