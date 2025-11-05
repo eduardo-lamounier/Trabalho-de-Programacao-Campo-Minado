@@ -228,7 +228,28 @@ void Field::RevealAll()
 /// @note Se o retorno for verdadeiro [true], quer dizer que o jogador ganhou
 bool Field::IsRevealed()
 {
-    // implementação
+    int bombs = GameConfig::Get("TOTALBOMBS");
+    int width = GameConfig::Get("WIDTH");
+    int height = GameConfig::Get("HEIGHT");
+
+    int squareNormal = width * height - bombs;
+
+    while(squareNormal > 0)
+    {    
+        for(int row = 0; row < height; row++)
+        {
+            for (auto col = 0; col < width; col++)
+            {
+                if(Field::At(row, col).GetBombsNearby() != -1 && Field::At(row, col).BeingShown())
+                    squareNormal--;
+                
+                if(row == height - 1 && col == width - 1 && squareNormal != 0)
+                return false;
+            }
+        }
+    }                   
+
+    return true;
 }
 
 /// @brief Exibe o campo minado para o jogador
@@ -236,27 +257,41 @@ bool Field::IsRevealed()
 ///       pode colocar letras ao invés de números em alguma das duas.
 void Field::Display()
 {
+    int num = 1;
+
+    std::cout << "   ";
+
+    for(num; num <= GameConfig::Get("WIDTH"); num++)
+        printf("%2d  ", num);
+    
+    num = 1;
+    std::cout << "\n";
+    
     for (auto row : Data)
     {
+        printf("%2d  ", num);
+
         for (auto square : row) // Vai indo de cúcula em cécula do campo;
         {
             if (square.hasFlag()) // Verifica se tem uma bandeira;
-                std::cout << "P  ";
+                std::cout << "P   ";
 
             else
             {
                 if (!square.BeingShown()) // Verifica se não está sendo mostrado;
-                    std::cout << "~  ";
+                    std::cout << "~   ";
                 else
                 {
                     if (square.GetBombsNearby() == -1) // Verifica se é uma bomba;
-                        std::cout << "X  ";
+                        std::cout << "X   ";
                     else
-                        std::cout << square.GetBombsNearby() << "  ";
+                        std::cout << square.GetBombsNearby() << "   ";
                 }
             }
         }
 
         std::cout << "\n";
+
+        num++;
     }
 }

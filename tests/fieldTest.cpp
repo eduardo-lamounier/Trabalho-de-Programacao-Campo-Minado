@@ -22,9 +22,12 @@ int main(int argc, char *argv[])
     GameConfig::InputSettings();
     Field::Generate();
     Field::Display();
+    std::cout << "\n" << Field::IsRevealed();
+
     Field::RevealAll();
     std::cout << "\n";
     Field::Display();
+    std::cout << "\n" << Field::IsRevealed();
     std::cout << std::endl;
 
     return 0;
