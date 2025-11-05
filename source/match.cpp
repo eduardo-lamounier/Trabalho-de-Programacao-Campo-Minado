@@ -26,9 +26,7 @@ int play() {
     int points = 0;
 
     Field::Generate();
-    while (true) {
-        // ^^^^ TODO: Tem que ser uma função para ver se todas as posições sem
-        //      bombas foram reveladas ou não (continua enquanto não tiverem sido)
+    while (!Field::IsRevealed()) {
         Field::Display();
 
         std::string command;
