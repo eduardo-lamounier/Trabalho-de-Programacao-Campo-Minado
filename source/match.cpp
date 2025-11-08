@@ -27,6 +27,7 @@ int play() {
 
     Field::Generate();
     while (!Field::IsRevealed()) {
+        Commands::ClearConsole();
         Field::Display();
 
         std::string command;
@@ -41,10 +42,6 @@ int play() {
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::string buff;
             std::getline(std::cin, buff);
-            continue;
-        }
-        if (command == "clear") {
-            Commands::ClearConsole();
             continue;
         }
         if (command == "dig") {
@@ -64,6 +61,8 @@ int play() {
 
         std::cout << "Comando invalido. Use o comando 'help' para ver os comandos existentes.\n";
     }
+
+    // points = <pontuação-ganha>;
 
     Commands::ClearConsole();
     Field::RevealAll();
@@ -94,7 +93,6 @@ void Commands::List() {
     std::cout << "flag [i] [j]:\n";
     std::cout << "- se tiver uma bandeira na linha [i] coluna [j]: Remove a bandeira;\n";
     std::cout << "- se não tiver uma bandeira na linha [i] coluna [j]: Adiciona uma bandeira.\n";
-    std::cout << "clear: Limpa o texto do programa até então.\n";
     std::cout << "exit: Finaliza o jogo e fica com os pontos ganhos até aqui.\n";
     std::cout << std::endl;
 }
