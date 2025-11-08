@@ -138,7 +138,9 @@ void Field::ReserveNoBombRegion()
 }
 
 /// @brief Gera o mapa do campo minado conforme as configurações do jogo
-/// @note As configurações são baseadas na classe: GameConfig
+/// @note As configurações são baseadas na classe: GameConfi
+/// @todo Melhorar a parte de falar para os quadrados quantas 
+/// bombas tem ao redor
 void Field::Generate()
 { // Gera o mapa do campo minado
 
@@ -181,7 +183,7 @@ void Field::Generate()
     // ------------------ Colocando o número de bombas próximas dos quadrados nos quadrados --------------------    
     int bombsNear = 0;
 
-    //---- *Descobri como melhorar essa parte, para ficar menos confuso. ----
+    
     for (int row = 0; row < height; row++)
     {
         for (int col = 0; col < width; col++)
@@ -212,6 +214,7 @@ void Field::Generate()
     }
 }
 
+/// @brief Revela todos os quadrados
 void Field::RevealAll()
 {
     for (auto &row : Data)
@@ -219,9 +222,8 @@ void Field::RevealAll()
         for (auto &square : row)
         {
             // Como não é possível revelar posições com bandeiras:
-            if (square.hasFlag()) {
+            if (square.hasFlag()) 
                 square.RemoveFlag();
-            }
 
             square.Reveal();
         }
@@ -234,9 +236,6 @@ void Field::RevealAll()
 /// quer dizer que o jogador ganhou
 int Field::IsRevealed()
 {
-    int width = GameConfig::Get("WIDTH");
-    int height = GameConfig:: Get("HEIGHT");
-
     int squareSeen = 0; // Quadrados sem bombas e sendo vistas 
 
     for(auto row : Data)
