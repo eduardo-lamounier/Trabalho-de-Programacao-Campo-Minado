@@ -37,8 +37,6 @@ int calculate_points(float revealed) {
 /// @brief Inicia um jogo para o usuário, e calcula a pontuação no fim
 /// @return Pontuação ganha pelo jogador nesse jogo
 int play() {
-    int points = 0;
-
     Field::Generate();
     while (!Field::IsRevealed()) {
         Commands::ClearConsole();
@@ -76,7 +74,8 @@ int play() {
         std::cout << "Comando invalido. Use o comando 'help' para ver os comandos existentes.\n";
     }
 
-    // points = <pontuação-ganha>;
+    const int area = GameConfig::Get("height") * GameConfig::Get("width");
+    const int points = calculate_points(Field::SquaresRevealed() / area);
 
     Commands::ClearConsole();
     Field::RevealAll();
