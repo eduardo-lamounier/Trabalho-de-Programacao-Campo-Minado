@@ -20,16 +20,18 @@ formato Doxygen acima do cabeçalho da função
 
 // ================================< Funções >=================================
 
-int calculate_points(float revealed) {
-    int height = GameConfig::Get("height"),
+int calculate_points(int squares_revealed) {
+    const int height = GameConfig::Get("height"),
         width = GameConfig::Get("width"),
         no_bombs_region = GameConfig::Get("nobombsregion"),
         total_bombs = GameConfig::Get("totalbombs");
 
-    int area = height * width;
+    const int area = height * width;
 
-    int k = 1;
-    int difficulty = k * area * (1 / no_bombs_region) * total_bombs;
+    const float revealed = squares_revealed * 1.0f / (area - total_bombs - no_bombs_region);
+
+    const float k = 1.0f;
+    const float difficulty = k * area * (1.0f / no_bombs_region) * total_bombs;
 
     return revealed * difficulty;
 }
@@ -74,8 +76,7 @@ int play() {
         std::cout << "Comando invalido. Use o comando 'help' para ver os comandos existentes.\n";
     }
 
-    const int area = GameConfig::Get("height") * GameConfig::Get("width");
-    const int points = calculate_points(Field::SquaresRevealed() / area);
+    const int points = calculate_points(Field::SquaresRevealed());
 
     Commands::ClearConsole();
     Field::RevealAll();
