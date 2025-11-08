@@ -88,5 +88,7 @@ public:
 
     static void RevealAll();
 
-    static int IsRevealed();
+    static int SquaresRevealed();
+
+    static bool IsRevealed();
 };
