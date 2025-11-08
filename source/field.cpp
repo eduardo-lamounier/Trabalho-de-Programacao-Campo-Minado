@@ -154,7 +154,7 @@ void Field::Generate()
     // Reservando a área:
     Field::ReserveNoBombRegion();
 
-    //---------------------- Colocando bombas em lugares "aleatórios" --------------------------------
+//---------------------- Colocando bombas em lugares "aleatórios" --------------------------------
 
     std::mt19937 gen(std::time(nullptr));   // mt19937 é o gerador de números pseudo-aleatórios
     // A seed é o time
@@ -229,37 +229,30 @@ void Field::RevealAll()
 }
 
 /// @brief Checa se todas as posições sem bomba do campo minado foram reveladas
-/// @return Retorna [true] se tiverem sido reveladas, [false] caso contrário
-/// @note Se o retorno for verdadeiro [true], quer dizer que o jogador ganhou
-bool Field::IsRevealed()
+/// @return Retorna o número de quadrados que estão sendo vistas e não são bombas
+/// @note Se o retorno for igual a área menos as bombas, 
+/// quer dizer que o jogador ganhou
+int Field::IsRevealed()
 {
-    int bombs = GameConfig::Get("TOTALBOMBS");
     int width = GameConfig::Get("WIDTH");
-    int height = GameConfig::Get("HEIGHT");
+    int height = GameConfig:: Get("HEIGHT");
 
-    int squareNormal = width * height - bombs;
+    int squareSeen = 0; // Quadrados sem bombas e sendo vistas 
 
-    while (squareNormal > 0)
+    for(auto row : Data)
     {
-        for (int row = 0; row < height; row++)
+        for(auto square : row)
         {
-            for (auto col = 0; col < width; col++)
-            {
-                if (Field::At(row, col).GetBombsNearby() != -1 && Field::At(row, col).BeingShown())
-                    squareNormal--;
-
-                if (row == height - 1 && col == width - 1 && squareNormal != 0)
-                    return false;
-            }
+            if(square.GetBombsNearby() != -1 && square.BeingShown())
+                squareSeen++;
         }
     }
 
-    return true;
+    return squareSeen; 
+    // Retorna o número de quadrados vistos que não são bombas.
 }
 
 /// @brief Exibe o campo minado para o jogador
-/// @todo Colocar uma numeração nas linhas e colunas, e se quiser POSTERIORMENTE,
-///       pode colocar letras ao invés de números em alguma das duas.
 void Field::Display()
 {
     int num = 1;
