@@ -20,6 +20,20 @@ formato Doxygen acima do cabeçalho da função
 
 // ================================< Funções >=================================
 
+int calculate_points(float revealed) {
+    int height = GameConfig::Get("height"),
+        width = GameConfig::Get("width"),
+        no_bombs_region = GameConfig::Get("nobombsregion"),
+        total_bombs = GameConfig::Get("totalbombs");
+
+    int area = height * width;
+
+    int k = 1;
+    int difficulty = k * area * (1 / no_bombs_region) * total_bombs;
+
+    return revealed * difficulty;
+}
+
 /// @brief Inicia um jogo para o usuário, e calcula a pontuação no fim
 /// @return Pontuação ganha pelo jogador nesse jogo
 int play() {
