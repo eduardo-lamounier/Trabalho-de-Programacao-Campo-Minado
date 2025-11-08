@@ -111,6 +111,7 @@ FieldSquare &Field::At(const cmm::index row, const cmm::index col) {
     // índice inválido
 }
 
+/// @brief Reserva os quadrados para que não tenham bombas
 void Field::ReserveNoBombRegion()
 {
     //-------------- dados pegos do GameConfig -----------------
@@ -121,7 +122,7 @@ void Field::ReserveNoBombRegion()
     //------------- Atribuindo as variáveis os seus valores ----
     int side = sqrt(RegionNoBomb); // side: Lado da região quadrada
 
-    //thick: borda, área que não será reservado
+    // thick: borda, área que não será reservada
     int thick_width = (width - side) / 2;
     int thick_height = (height - side) / 2;
 
@@ -139,6 +140,8 @@ void Field::ReserveNoBombRegion()
 
 /// @brief Gera o mapa do campo minado conforme as configurações do jogo
 /// @note As configurações são baseadas na classe: GameConfig
+/// @todo Melhorar a parte de falar para os quadrados quantas 
+/// bombas tem ao redor.
 void Field::Generate()
 { // Gera o mapa do campo minado
 
@@ -159,7 +162,7 @@ void Field::Generate()
     std::mt19937 gen(std::time(nullptr));   // mt19937 é o gerador de números pseudo-aleatórios
     // A seed é o time
 
-// Distribui uniformemente entre os números dejesados.
+    // Distribui uniformemente entre os números dejesados.
     std::uniform_int_distribution<int> dist_row(0, height - 1); //Números gerados para a linha;
     std::uniform_int_distribution<int> dist_col(0, width - 1);  //Números gerado para a coluna;
 
@@ -181,7 +184,7 @@ void Field::Generate()
     // ------------------ Colocando o número de bombas próximas dos quadrados nos quadrados --------------------    
     int bombsNear = 0;
 
-    //---- *Descobri como melhorar essa parte, para ficar menos confuso. ----
+
     for (int row = 0; row < height; row++)
     {
         for (int col = 0; col < width; col++)
@@ -212,6 +215,7 @@ void Field::Generate()
     }
 }
 
+/// @brief Revela todos os quadrados
 void Field::RevealAll()
 {
     for (auto &row : Data)
@@ -219,9 +223,8 @@ void Field::RevealAll()
         for (auto &square : row)
         {
             // Como não é possível revelar posições com bandeiras:
-            if (square.hasFlag()) {
+            if (square.hasFlag())
                 square.RemoveFlag();
-            }
 
             square.Reveal();
         }
@@ -229,37 +232,39 @@ void Field::RevealAll()
 }
 
 /// @brief Checa se todas as posições sem bomba do campo minado foram reveladas
-/// @return Retorna [true] se tiverem sido reveladas, [false] caso contrário
-/// @note Se o retorno for verdadeiro [true], quer dizer que o jogador ganhou
-bool Field::IsRevealed()
+/// @return Retorna o número de quadrados que estão sendo vistas e não são bombas
+/// @note Se o retorno for igual a área menos as bombas, 
+/// quer dizer que o jogador ganhou
+int Field::SquaresRevealed()
 {
-    int bombs = GameConfig::Get("TOTALBOMBS");
-    int width = GameConfig::Get("WIDTH");
-    int height = GameConfig::Get("HEIGHT");
+    int squareSeen = 0; // Quadrados sem bombas e sendo vistas 
 
-    int squareNormal = width * height - bombs;
-
-    while (squareNormal > 0)
+    for (auto row : Data)
     {
-        for (int row = 0; row < height; row++)
+        for (auto square : row)
         {
-            for (auto col = 0; col < width; col++)
-            {
-                if (Field::At(row, col).GetBombsNearby() != -1 && Field::At(row, col).BeingShown())
-                    squareNormal--;
-
-                if (row == height - 1 && col == width - 1 && squareNormal != 0)
-                    return false;
-            }
+            if (square.GetBombsNearby() != -1 && square.BeingShown())
+                squareSeen++;
         }
     }
 
-    return true;
+    return squareSeen;
+    // Retorna o número de quadrados vistos que não são bombas.
+}
+
+/// @brief Verifica se todas os quadrados sem bombas foram revelados
+/// @return Retorna se todas os quadrados sem bombas foram reveladas [true/false]
+/// @note Se true significa que o jogador ganhou
+bool Field::IsRevealed()
+{
+    int width = GameConfig::Get("WIDTH");
+    int height = GameConfig::Get("HEIGHT");
+    int bombs = GameConfig::Get("TOTALBOMBS");
+
+    return Field::SquaresRevealed() == width * height - bombs;
 }
 
 /// @brief Exibe o campo minado para o jogador
-/// @todo Colocar uma numeração nas linhas e colunas, e se quiser POSTERIORMENTE,
-///       pode colocar letras ao invés de números em alguma das duas.
 void Field::Display()
 {
     int num = 1;
