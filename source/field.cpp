@@ -218,6 +218,11 @@ void Field::RevealAll()
     {
         for (auto &square : row)
         {
+            // Como não é possível revelar posições com bandeiras:
+            if (square.hasFlag()) {
+                square.RemoveFlag();
+            }
+
             square.Reveal();
         }
     }
