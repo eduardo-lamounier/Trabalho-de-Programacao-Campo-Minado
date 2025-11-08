@@ -234,20 +234,20 @@ bool Field::IsRevealed()
 
     int squareNormal = width * height - bombs;
 
-    while(squareNormal > 0)
-    {    
-        for(int row = 0; row < height; row++)
+    while (squareNormal > 0)
+    {
+        for (int row = 0; row < height; row++)
         {
             for (auto col = 0; col < width; col++)
             {
-                if(Field::At(row, col).GetBombsNearby() != -1 && Field::At(row, col).BeingShown())
+                if (Field::At(row, col).GetBombsNearby() != -1 && Field::At(row, col).BeingShown())
                     squareNormal--;
-                
-                if(row == height - 1 && col == width - 1 && squareNormal != 0)
-                return false;
+
+                if (row == height - 1 && col == width - 1 && squareNormal != 0)
+                    return false;
             }
         }
-    }                   
+    }
 
     return true;
 }
@@ -261,12 +261,12 @@ void Field::Display()
 
     std::cout << "   ";
 
-    for(num; num <= GameConfig::Get("WIDTH"); num++)
+    for (; num <= GameConfig::Get("WIDTH"); num++)
         printf("%2d  ", num);
-    
+
     num = 1;
     std::cout << "\n";
-    
+
     for (auto row : Data)
     {
         printf("%2d  ", num);
