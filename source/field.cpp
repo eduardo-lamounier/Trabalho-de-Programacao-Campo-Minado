@@ -157,7 +157,7 @@ void Field::Generate()
     // Reservando a área:
     Field::ReserveNoBombRegion();
 
-//---------------------- Colocando bombas em lugares "aleatórios" --------------------------------
+    //---------------------- Colocando bombas em lugares "aleatórios" --------------------------------
 
     std::mt19937 gen(std::time(nullptr));   // mt19937 é o gerador de números pseudo-aleatórios
     // A seed é o time
@@ -184,7 +184,7 @@ void Field::Generate()
     // ------------------ Colocando o número de bombas próximas dos quadrados nos quadrados --------------------    
     int bombsNear = 0;
 
-    
+
     for (int row = 0; row < height; row++)
     {
         for (int col = 0; col < width; col++)
@@ -223,7 +223,7 @@ void Field::RevealAll()
         for (auto &square : row)
         {
             // Como não é possível revelar posições com bandeiras:
-            if (square.hasFlag()) 
+            if (square.hasFlag())
                 square.RemoveFlag();
 
             square.Reveal();
@@ -239,16 +239,16 @@ int Field::SquaresRevealed()
 {
     int squareSeen = 0; // Quadrados sem bombas e sendo vistas 
 
-    for(auto row : Data)
+    for (auto row : Data)
     {
-        for(auto square : row)
+        for (auto square : row)
         {
-            if(square.GetBombsNearby() != -1 && square.BeingShown())
+            if (square.GetBombsNearby() != -1 && square.BeingShown())
                 squareSeen++;
         }
     }
 
-    return squareSeen; 
+    return squareSeen;
     // Retorna o número de quadrados vistos que não são bombas.
 }
 
@@ -261,11 +261,7 @@ bool Field::IsRevealed()
     int height = GameConfig::Get("HEIGHT");
     int bombs = GameConfig::Get("TOTALBOMBS");
 
-    if (Field::SquaresRevealed() == width*height - bombs)
-        return true;
-
-    else
-        return false;
+    return Field::SquaresRevealed() == width * height - bombs;
 }
 
 /// @brief Exibe o campo minado para o jogador
