@@ -2,7 +2,7 @@
 
 Criado em: 24/09/2025 por Eduardo
 Responsabilidade de: Heitor
-Finalizado em: --/--/2025
+Finalizado em: 08/11/2025
 
 # Visão geral:
 Um header com o protótipo das funções de geração, atualização e exibição do

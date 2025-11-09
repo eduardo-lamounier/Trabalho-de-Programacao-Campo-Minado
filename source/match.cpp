@@ -2,7 +2,7 @@
 
 Criado em: 25/09/2025 por Eduardo
 Responsabilidade de: Eduardo
-Finalizado em: --/--/2025
+Finalizado em: 09/11/2025
 
 # Visão geral:
 Arquivo .cpp complementar para implementar as funções, classes e

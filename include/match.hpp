@@ -2,7 +2,7 @@
 
 Criado em: 15/09/2025 por Eduardo
 Responsabilidade de: Eduardo
-Finalizado em: --/--/2025
+Finalizado em: 04/11/2025
 
 # Visão geral:
 Um header com o protótipo das funções do jogo: comandos do jogador, cálculo da
