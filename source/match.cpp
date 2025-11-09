@@ -20,7 +20,7 @@ formato Doxygen acima do cabeçalho da função
 
 // ================================< Funções >=================================
 
-int calculate_points(int squares_revealed) {
+int calculate_points(const int squares_revealed) {
     const int height = GameConfig::Get("height"),
         width = GameConfig::Get("width"),
         no_bombs_region = GameConfig::Get("nobombsregion"),
@@ -28,13 +28,14 @@ int calculate_points(int squares_revealed) {
 
     const int area = height * width;
 
-    const float revealed = squares_revealed * 1.0f / (area - total_bombs - no_bombs_region);
+    const float revealed_by_player = (squares_revealed - no_bombs_region) * 1.0f /
+        (area - total_bombs - no_bombs_region);
 
-    const float k = 1.0f; // constante arbitrária
-    const float bombs_density = total_bombs * 1.0f / (area + no_bombs_region);
+    const float k = 100.0f; // constante arbitrária
+    const float bombs_density = total_bombs * 1.0f / (area - no_bombs_region);
     const float difficulty = k * bombs_density;
 
-    return revealed * difficulty;
+    return revealed_by_player * difficulty;
 }
 
 /// @brief Inicia um jogo para o usuário, e calcula a pontuação no fim
