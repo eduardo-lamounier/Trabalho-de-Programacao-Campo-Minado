@@ -35,6 +35,9 @@ int main(int argc, char *argv[]) {
 
     std::cout << "->> pressione 'Enter' para fechar." << std::endl;
     std::string buff;
+    // ignora o que ficou no buffer da leitura anterior:
+    std::getline(std::cin, buff);
+    // Espera pelo input do usuário:
     std::getline(std::cin, buff);
     Commands::ClearConsole();
 
