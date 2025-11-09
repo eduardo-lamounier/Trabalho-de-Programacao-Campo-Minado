@@ -30,8 +30,9 @@ int calculate_points(int squares_revealed) {
 
     const float revealed = squares_revealed * 1.0f / (area - total_bombs - no_bombs_region);
 
-    const float k = 1.0f;
-    const float difficulty = k * area * (1.0f / no_bombs_region) * total_bombs;
+    const float k = 1.0f; // constante arbitrária
+    const float bombs_density = total_bombs * 1.0f / (area + no_bombs_region);
+    const float difficulty = k * bombs_density;
 
     return revealed * difficulty;
 }
