@@ -24,7 +24,7 @@ CC = g++
 FLAGS = -Wall -Iinclude # Sujeito a adições
 
 # Nomes dos executáveis:
-APLICACAO = bin/app.exe
+APLICACAO = bin/campo-minado.exe
 TESTE_CONFIG = bin/configTest.exe
 TESTE_CAMPO = bin/fieldTest.exe
 
@@ -33,19 +33,25 @@ APP_SOURCES = $(wildcard source/*.cpp) # Todos os arquivos .cpp em source
 TEST_CONFIG_SOURCES = tests/configTest.cpp source/config.cpp
 TEST_CAMPO_SOURCES = tests/fieldTest.cpp source/field.cpp source/config.cpp
 
-# Target padrão: Compila tudo:
-all: app config-test
+ifeq ($(OS),Windows_NT)
+    MKDIR = @if not exist $(1) mkdir $(1)
+else
+    MKDIR = @mkdir -p $(1)
+endif
+
+create-bin:
+	$(call MKDIR,bin)
 
 # Linka e produz as aplicações:
-app: $(APP_SOURCES)
+app: $(APP_SOURCES) create-bin
 	@echo ...Linkando e produzindo a aplicacao final
 	@$(CC) $(FLAGS) $(APP_SOURCES) -o $(APLICACAO)
 
-config-test: $(TEST_CONFIG_SOURCES)
+config-test: $(TEST_CONFIG_SOURCES) create-bin
 	@echo ...Linkando e produzindo a aplicacao teste para config.hpp
 	@$(CC) $(FLAG) $(TEST_CONFIG_SOURCES) -o $(TESTE_CONFIG)
 
-field-test: $(TEST_CAMPO_SOURCES)
+field-test: $(TEST_CAMPO_SOURCES) create-bin
 	@echo ...Linkando e produzindo a aplicacao teste para field.hpp
 	@$(CC) $(FLAG) $(TEST_CAMPO_SOURCES) -o $(TESTE_CAMPO)
 
@@ -54,7 +60,6 @@ run-app: app
 	@echo ...Rodando a aplicacao final
 	@echo ================================================================================
 	@$(APLICACAO)
-	@echo ================================================================================
 
 # Roda os testes específicos:
 run-config-test: config-test
