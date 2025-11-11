@@ -41,7 +41,7 @@ A aplicação principal e os executáveis dos testes são compilados usando make
 
 Para rodar a aplicação principal, basta digitar no terminal, enquanto está com a pasta do repositório aberta, o comando:  
 
-`> bin/app.exe` (`app.exe` se estiver dentro da pasta bin/),
+`> bin/campo-minado.exe` (`campo-minado.exe` se estiver dentro da pasta bin/),
 ou até  
 `> make run-app`, caso estiver com o código fonte em mãos e o 'Make' instalado no seu computador - recompila a cada execução.
 
